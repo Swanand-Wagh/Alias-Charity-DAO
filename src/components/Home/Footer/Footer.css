@@ -1,0 +1,119 @@
+.app__footer {
+  background-color: #1c1d1e;
+  align-items: flex-start;
+  gap: 40px;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+
+.app__footer-conatiner-wrapper {
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.app__footer-container {
+  flex: 1;
+}
+
+.app__footer-container-heading {
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.app__footer-container-underline {
+  width: 75px;
+  height: 2px;
+  background-color: var(--color-pink);
+  margin-bottom: 20px;
+  margin-top: 7.5px;
+}
+
+.app__footer-container p {
+  color: var(--color-white);
+}
+
+.app__footer-socialIcons-container {
+  padding: 15px 0;
+  display: flex;
+  gap: 5px;
+}
+
+.footer-socialIcons {
+  padding: 7.5px;
+  background-color: var(--color-pink);
+  color: var(--color-white);
+  font-size: 20px;
+  transition: ease-in-out 0.4s;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.footer-socialIcons:hover {
+  color: var(--color-pink);
+  background-color: var(--color-white);
+}
+
+.app__footer-container-services-content {
+  display: flex;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.app__footer-container-services-content p {
+  transition: ease-in-out 0.7s;
+}
+
+.app__footer-container-services-content:hover p {
+  color: var(--color-pink);
+  letter-spacing: 0.1rem;
+}
+
+.app__footer-container-services-content:hover
+  .app__footer-container-findus-content-icons {
+  color: var(--color-pink);
+}
+
+.app__footer-container-findus-content {
+  display: flex;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.app__footer-container-findus-content p {
+  transition: ease-in-out 0.4s;
+}
+
+.app__footer-container-findus-content-icons {
+  font-size: 20px;
+  color: var(--color-white);
+  transition: ease-in-out 0.4s;
+  margin-right: 10px;
+}
+
+.app__footer-container-findus-content:hover
+  .app__footer-container-findus-content-icons {
+  color: var(--color-pink);
+}
+
+.app__footer-container-findus-content:hover p {
+  color: var(--color-pink);
+}
+
+.empty {
+  width: 100%;
+  border: 1px solid #565655;
+}
+
+.copyright__text {
+  color: var(--color-white);
+  margin-top: -20px;
+}
+
+.copyright__text span {
+  color: var(--color-pink);
+  margin-left: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.06rem;
+  cursor: pointer;
+}

@@ -1,0 +1,39 @@
+.app__hero {
+  align-items: flex-start;
+  gap: 20px;
+  background-image: url("../../../assets/slider/slider-02.png");
+}
+
+.app__hero__contentWrapper-right,
+.app__hero__contentWrapper-left {
+  flex: 1;
+}
+
+.app__hero-headtext {
+  color: var(--color-pink);
+  margin: 1.25rem 0rem;
+  font-size: 35px;
+  line-height: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.app__hero__contentWrapper-left p {
+  font-size: 20px;
+  display: inline-block;
+  margin: 1.25rem 0rem;
+  line-height: 30px;
+  color: #373738;
+}
+
+.app__hero__buttonWrapper {
+  margin: 1.25rem 0;
+}
+
+.app__hero__buttonWrapper button {
+  margin-right: 10px;
+}
+
+.app__hero__contentWrapper-right img {
+  width: 100%;
+}

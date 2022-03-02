@@ -1,0 +1,41 @@
+.app__navbar {
+  width: 100%;
+  padding: 10px 90px;
+  box-shadow: 0 2px 20px 0 rgb(0 0 0 / 15%);
+}
+
+.app__navbar img {
+  width: 280px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.app__navbar ul {
+  flex: 1;
+  padding: 0 10px;
+  overflow: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.app__navbar ul li {
+  float: left;
+  margin-left: 4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app__navbar ul li:hover {
+  color: var(--color-pink);
+}
+
+/* ---------- Media Queries ---------- */
+
+@media screen and (max-width: 1150px) {
+  .app__navbar {
+    padding: 0.75rem 0;
+  }
+}
+
+/* ---------- Media Queries ---------- */
