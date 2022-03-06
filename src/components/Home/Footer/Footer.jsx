@@ -119,7 +119,7 @@ const Footer = () => {
             <span className="app__footer-container-findus-content-icons flex__center">
               <FaMobileAlt />
             </span>
-            <p className="p__normal">+91 99550 66233</p>
+            <p className="p__normal">+91 1234567890</p>
           </div>
           <div className="app__footer-container-findus-content">
             <span className="app__footer-container-findus-content-icons flex__center">
@@ -132,7 +132,7 @@ const Footer = () => {
       <div className="empty"></div>
       <p className="copyright__text p__normal">
         2022 &copy; All Rights Reserved Designed and developed by{" "}
-        <span>Sawanand Wagh</span>
+        <span>ALIAS</span>
       </p>
     </footer>
   );
