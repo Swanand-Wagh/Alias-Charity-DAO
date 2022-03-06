@@ -8,8 +8,6 @@ import {
   FaHeart,
   FaHandHoldingHeart,
   FaHome,
-  FaHandHoldingWater,
-  FaHeartbeat,
 } from "react-icons/fa";
 
 const Servicescard = ({ icon, heading, text }) => {

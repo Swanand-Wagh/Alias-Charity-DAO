@@ -4,7 +4,6 @@ import "./Team.css";
 import personOne from "../../../assets/team/1.jpg";
 import personTwo from "../../../assets/team/2.jpg";
 import personThree from "../../../assets/team/3.jpg";
-import personFour from "../../../assets/team/4.jpg";
 
 import {
   FaFacebookF,

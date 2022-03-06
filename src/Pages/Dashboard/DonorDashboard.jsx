@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "../../components/Home/Navbar/Navbar";
 
 const DonorDashboard = () => {
   return (
     <>
-      <div>DonorDashboard</div>
+      <div>
+        <Navbar userType="DONOR" />
+      </div>
     </>
   );
 };

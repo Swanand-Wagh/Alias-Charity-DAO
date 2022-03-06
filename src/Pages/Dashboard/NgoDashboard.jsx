@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "../../components/Home/Navbar/Navbar";
 
 const NgoDashboard = () => {
   return (
     <>
-      <div>NgoDashboard</div>
+      <div>
+        <Navbar userType="NGO" />
+      </div>
     </>
   );
 };

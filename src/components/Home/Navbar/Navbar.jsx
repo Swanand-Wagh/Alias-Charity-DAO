@@ -4,28 +4,54 @@ import siteLogo from "../../../assets/logo.png";
 import { useMoralis } from "react-moralis";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ userType }) => {
   let navigate = useNavigate();
-  const { authenticate, isAuthenticated } = useMoralis();
+  const { authenticate, isAuthenticated, logout, user } = useMoralis();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard/donor");
-    }
-  }, [isAuthenticated]);
+  const hideElement = {
+    display: "none",
+  };
+  const showElement = {
+    display: "block",
+  };
 
   return (
     <nav className="app__navbar flex__center section__padding">
-      <img src={siteLogo} title="Logo" alt="logo" />
+      <img
+        src={siteLogo}
+        title="Logo"
+        alt="logo"
+        onClick={() => navigate("/")}
+      />
       <ul>
-        <li>Home</li>
-        <li onClick={() => authenticate()}>Connect Wallet</li>
+        <li onClick={() => navigate("/")}>Home</li>
+        <li
+          onClick={() => navigate("/dashboard/ngo")}
+          style={userType ? hideElement : showElement}
+        >
+          NGO Dashboard
+        </li>
+        <li
+          onClick={() => navigate("/dashboard/donor")}
+          style={userType ? hideElement : showElement}
+        >
+          Donor Dashboard
+        </li>
+        {userType && !isAuthenticated && (
+          <li onClick={() => authenticate()}>Connect Wallet</li>
+        )}
+        {userType && isAuthenticated && (
+          <li>
+            {userType} :{" "}
+            <span style={{ fontWeight: "500" }}>{user.get("username")}</span>
+          </li>
+        )}
+        {userType && isAuthenticated && (
+          <li onClick={() => logout()}>Logout</li>
+        )}
       </ul>
     </nav>
   );
 };
 
 export default Navbar;
-// {
-//   isAuthenticated ? user.get("username") : "Connect Wallet";
-// }
