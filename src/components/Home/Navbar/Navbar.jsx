@@ -18,12 +18,13 @@ const Navbar = ({ userType }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const fetchUserData = Moralis.Object.extend("User");
-      const query = new Moralis.Query(fetchUserData);
-      await query.get(user.id).then((data) => {
-        setIsNgo(data.get("isNgo"));
-        console.log(isNgo);
-      });
+      if (user) {
+        const fetchUserData = Moralis.Object.extend("User");
+        const query = new Moralis.Query(fetchUserData);
+        await query.get(user.id).then((data) => {
+          setIsNgo(data.get("isNgo"));
+        });
+      }
     };
 
     getData();
@@ -52,7 +53,27 @@ const Navbar = ({ userType }) => {
           DONOR Dashboard
         </li>
         {userType && !isAuthenticated && (
-          <li onClick={() => authenticate()}>Connect Wallet</li>
+          <li
+            onClick={() => {
+              authenticate().then((u) => {
+                const isNGO = u.get("isNgo");
+
+                if (isNGO === undefined) {
+                  const bool = userType === "NGO";
+                  u.set("isNgo", bool);
+                  u.save();
+                } else {
+                  if (!isNGO) {
+                    navigate("/dashboard/donor");
+                  } else {
+                    navigate("/dashboard/ngo");
+                  }
+                }
+              });
+            }}
+          >
+            Connect Wallet
+          </li>
         )}
         {userType && isAuthenticated && (
           <li>
