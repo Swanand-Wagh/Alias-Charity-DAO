@@ -6,8 +6,25 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
-  const { authenticate, isAuthenticated, logout, user, Moralis } = useMoralis();
-  const [isNgo, setIsNgo] = useState(false);
+  const { authenticate, isAuthenticated, logout, user } = useMoralis();
+  const [isNGO, setIsNGO] = useState(undefined);
+
+  useEffect(() => {
+    if (isNGO !== undefined) {
+      if (user && isAuthenticated && isNGO && userType === "DONOR") {
+        logout();
+      }
+      if (user && isAuthenticated && !isNGO && userType === "NGO") {
+        logout();
+      }
+    }
+  }, [isNGO]);
+
+  useEffect(() => {
+    if (user) {
+      setIsNGO(user.get("isNgo"));
+    }
+  }, []);
 
   const hideElement = {
     display: "none",
@@ -15,20 +32,6 @@ const Navbar = ({ userType }) => {
   const showElement = {
     display: "block",
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      if (user) {
-        const fetchUserData = Moralis.Object.extend("User");
-        const query = new Moralis.Query(fetchUserData);
-        await query.get(user.id).then((data) => {
-          setIsNgo(data.get("isNgo"));
-        });
-      }
-    };
-
-    getData();
-  }, []);
 
   return (
     <nav className="app__navbar flex__center section__padding">
@@ -57,6 +60,7 @@ const Navbar = ({ userType }) => {
             onClick={() => {
               authenticate().then((u) => {
                 const isNGO = u.get("isNgo");
+                setIsNGO(isNGO);
 
                 if (isNGO === undefined) {
                   const bool = userType === "NGO";
