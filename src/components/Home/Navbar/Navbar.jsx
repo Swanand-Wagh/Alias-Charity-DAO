@@ -9,14 +9,13 @@ const Navbar = ({ userType }) => {
   const { authenticate, isAuthenticated, logout, user } = useMoralis();
   const [isNGO, setIsNGO] = useState(undefined);
 
+  const hideElement = { display: "none" };
+  const showElement = { display: "block" };
+
   useEffect(() => {
     if (isNGO !== undefined) {
-      if (user && isAuthenticated && isNGO && userType === "DONOR") {
-        logout();
-      }
-      if (user && isAuthenticated && !isNGO && userType === "NGO") {
-        logout();
-      }
+      if (isAuthenticated && isNGO && userType === "DONOR") logout();
+      if (isAuthenticated && !isNGO && userType === "NGO") logout();
     }
   }, [isNGO]);
 
@@ -26,11 +25,23 @@ const Navbar = ({ userType }) => {
     }
   }, []);
 
-  const hideElement = {
-    display: "none",
-  };
-  const showElement = {
-    display: "block",
+  const connectWallet = () => {
+    authenticate().then((u) => {
+      const isNGO = u.get("isNgo");
+      setIsNGO(isNGO);
+
+      if (isNGO === undefined) {
+        const bool = userType === "NGO";
+        u.set("isNgo", bool);
+        u.save();
+      } else {
+        if (!isNGO) {
+          navigate("/dashboard/donor");
+        } else {
+          navigate("/dashboard/ngo");
+        }
+      }
+    });
   };
 
   return (
@@ -56,37 +67,17 @@ const Navbar = ({ userType }) => {
           DONOR Dashboard
         </li>
         {userType && !isAuthenticated && (
-          <li
-            onClick={() => {
-              authenticate().then((u) => {
-                const isNGO = u.get("isNgo");
-                setIsNGO(isNGO);
-
-                if (isNGO === undefined) {
-                  const bool = userType === "NGO";
-                  u.set("isNgo", bool);
-                  u.save();
-                } else {
-                  if (!isNGO) {
-                    navigate("/dashboard/donor");
-                  } else {
-                    navigate("/dashboard/ngo");
-                  }
-                }
-              });
-            }}
-          >
-            Connect Wallet
-          </li>
+          <li onClick={() => connectWallet()}>Connect Wallet</li>
         )}
+        {userType === "NGO" && isAuthenticated && <li>Host Campaign</li>}
         {userType && isAuthenticated && (
-          <li>
-            {userType} :{" "}
-            <span style={{ fontWeight: "500" }}>{user.get("username")}</span>
-          </li>
-        )}
-        {userType && isAuthenticated && (
-          <li onClick={() => logout()}>Logout</li>
+          <>
+            <li>
+              {userType} :{" "}
+              <span style={{ fontWeight: "500" }}>{user.getUsername()}</span>
+            </li>
+            <li onClick={() => logout()}>Logout</li>
+          </>
         )}
       </ul>
     </nav>
