@@ -26,7 +26,9 @@ const Navbar = ({ userType }) => {
   }, []);
 
   const connectWallet = () => {
-    authenticate().then((u) => {
+    authenticate({
+      signingMessage: `You are About to Login as ${userType}`,
+    }).then((u) => {
       const isNGO = u.get("isNgo");
       setIsNGO(isNGO);
 

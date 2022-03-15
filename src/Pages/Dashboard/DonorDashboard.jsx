@@ -1,5 +1,5 @@
 import React from "react";
-import Donate from "../../components/Dashboard/Donor/Donate";
+import TransferMoney from "../../components/Dashboard/Donor/TransferMoney";
 import Footer from "../../components/Home/Footer/Footer";
 import Navbar from "../../components/Home/Navbar/Navbar";
 
@@ -8,7 +8,7 @@ const DonorDashboard = () => {
     <>
       <div>
         <Navbar userType="DONOR" />
-        <Donate />
+        <TransferMoney />
         <Footer />
       </div>
     </>
