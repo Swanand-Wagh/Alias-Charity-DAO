@@ -45,12 +45,15 @@ const Navbar = ({ userType }) => {
         u.save();
       } else {
         if (!isNGO) {
-          navigate("/dashboard/donor");
+          userType === "DONOR"
+            ? toast.success("Wallet Successfully Connected!", toastStyles)
+            : navigate("/dashboard/donor");
         } else {
-          navigate("/dashboard/ngo");
+          userType === "NGO"
+            ? toast.success("Wallet Successfully Connected!", toastStyles)
+            : navigate("/dashboard/ngo");
         }
       }
-      toast.success("Wallet Successfully Connected!", toastStyles);
     });
   };
 

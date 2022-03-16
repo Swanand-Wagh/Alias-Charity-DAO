@@ -18,7 +18,6 @@ export const CharityDAOProvider = ({ children }) => {
       background: "#333",
       color: "#fff",
     },
-    duration: 2500,
   };
 
   useEffect(() => {
