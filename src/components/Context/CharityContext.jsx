@@ -1,9 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
 
 const { ethereum } = window;
 export const CharityContext = createContext();
 
 export const CharityDAOProvider = ({ children }) => {
+  const { web3, Moralis, user } = useMoralis();
+
   useEffect(() => {
     const checkIfWalletIsConnected = async () => {
       try {
@@ -17,6 +20,8 @@ export const CharityDAOProvider = ({ children }) => {
   }, []);
 
   return (
-    <CharityContext.Provider value={{}}>{children}</CharityContext.Provider>
+    <CharityContext.Provider value={{ }}>
+      {children}
+    </CharityContext.Provider>
   );
 };
