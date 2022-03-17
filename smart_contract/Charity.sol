@@ -23,11 +23,10 @@ contract Charity {
         bytes32 postOwner;
         string title;
         string content;
-        uint256 amt;
-        uint256 amtThreshold;
-        // To check if proposal already exists
-        bool proposalExists;
-        bool closed;
+        uint256 amt; // funds received
+        uint256 amtThreshold; // funds to be raised
+        bool proposalExists; // to check if proposal already exists
+        bool closed; // true if proposal has raised required funds
     }
 
     // Map of all NGOs
@@ -41,11 +40,11 @@ contract Charity {
         ngoRegistry[id].ngoExists = true;
     }
 
-    /// @notice NGO creates a proposal ie A Campaign/Event
+    /// @notice NGO creates a proposal ie. A Campaign/Event
     /// @param id Proposal ID
     /// @param title Title of the Proposal
-    /// @param content Proposal Description
-    /// @param amtThreshold Funds to be Raised
+    /// @param content Description of the Proposal
+    /// @param amtThreshold Total Funds to be Raised
     /// @return creationStatus True if proposal was created successfully. Otherwise false.
     function createProposal(
         string memory id,
@@ -115,14 +114,20 @@ contract Charity {
         public
         view
         returns (
+            bytes32,
             string memory,
             string memory,
+            uint256,
+            uint256,
             bool
         )
     {
         return (
+            proposalRegistry[proposalID].postOwner,
             proposalRegistry[proposalID].title,
             proposalRegistry[proposalID].content,
+            proposalRegistry[proposalID].amt,
+            proposalRegistry[proposalID].amtThreshold,
             proposalRegistry[proposalID].closed
         );
     }

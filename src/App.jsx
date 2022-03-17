@@ -8,7 +8,7 @@ import NgoDashboard from "./Pages/Dashboard/NgoDashboard";
 
 const App = () => {
   let navigate = useNavigate();
-  
+
   return (
     <>
       <div>
