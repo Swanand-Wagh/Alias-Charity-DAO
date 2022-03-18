@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useMoralisFile, useWeb3ExecuteFunction } from "react-moralis";
+import './CreateProposal.css';
 import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
+import dashboardImage from '../../../assets/dashboard/world-ngo-day-mauritius.svg';
 
 const CreateProposal = () => {
   const { toastStyles, contractABI, contractAddress, walletAddress } =
@@ -64,38 +66,45 @@ const CreateProposal = () => {
   return (
     <>
       <Toaster />
-      <form onSubmit={onSubmit}>
-        <div className="">
-          <div className="">
-            <input
-              className=""
-              type="text"
-              placeholder="Event Name"
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
-            />
-            <input
-              className=""
-              type="number"
-              step="0.0001"
-              placeholder="Amount to be Raised"
-              onChange={(e) => setAmtToBeRaised(e.target.value)}
-              value={amtToBeRaised}
-            />
-            <textarea
-              className=""
-              type="text"
-              placeholder="Event Description"
-              rows="4"
-              onChange={(e) => setContent(e.target.value)}
-              value={content}
-            />
+      <div className="app__dashboard container__bg flex__center section__padding">
+        <h1 className="section__heading">Lorem ipsum dolor sit amet</h1>
+        <form className="app__dashboard-form" onSubmit={onSubmit}>
+          <div className="app__dashboards-form-wrapper flex__center">
+            <div className="app__dashboards-form-inputs flex__center">
+              <input
+                className=""
+                type="text"
+                placeholder="Event Name"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+              />
+              <input
+                className=""
+                type="number"
+                step="0.0001"
+                placeholder="Amount to be Raised"
+                onChange={(e) => setAmtToBeRaised(e.target.value)}
+                value={amtToBeRaised}
+              />
+              <textarea
+                className=""
+                type="text"
+                placeholder="Event Description"
+                rows="4"
+                onChange={(e) => setContent(e.target.value)}
+                value={content}
+              />
+            </div>
+            <button type="submit" className="custom__button">
+              Submit
+            </button>
           </div>
-          <button type="submit" className="">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="app__dashboard-image">
+            <p className="section__heading">Raise Fund For A Reason</p>
+            <img src={dashboardImage} alt="DashboardImage" />
+          </div>
+        </form>
+      </div>
     </>
   );
 };

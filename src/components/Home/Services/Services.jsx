@@ -31,32 +31,32 @@ const Services = () => {
       </p>
       <div className="app__services__servicesCard-container">
         <Servicescard
-          icon={<FaBone size={30} color="#FD1B5B" />}
+          icon={<FaBone color="#FD1B5B" />}
           heading="Raise fund for healthy food"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />
         <Servicescard
-          icon={<FaGraduationCap size={30} color="#FD1B5B" />}
+          icon={<FaGraduationCap color="#FD1B5B" />}
           heading="Education for poor children"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />
         <Servicescard
-          icon={<FaChild size={30} color="#FD1B5B" />}
+          icon={<FaChild color="#FD1B5B" />}
           heading="Promoting the rights of children"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />
         <Servicescard
-          icon={<FaHeart size={30} color="#FD1B5B" />}
+          icon={<FaHeart color="#FD1B5B" />}
           heading="Massive donation to poor"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />
         <Servicescard
-          icon={<FaHandHoldingHeart size={30} color="#FD1B5B" />}
+          icon={<FaHandHoldingHeart color="#FD1B5B" />}
           heading="Huge help to homeless pupil"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />
         <Servicescard
-          icon={<FaHome size={30} color="#FD1B5B" />}
+          icon={<FaHome color="#FD1B5B" />}
           heading="Let's build some homes"
           text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
         />

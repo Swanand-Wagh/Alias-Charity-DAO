@@ -8,6 +8,7 @@
 
 .app__footer-conatiner-wrapper {
   gap: 40px;
+  width: 100%;
   align-items: flex-start;
 }
 
@@ -116,4 +117,24 @@
   font-size: 18px;
   letter-spacing: 0.06rem;
   cursor: pointer;
+}
+
+
+@media screen and (min-width: 2000px) {
+  .app__footer-container-heading {
+    font-size: 30px;
+  }
+
+  .app__footer-socialIcons-container {
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .footer-socialIcons {
+    font-size: 30px;
+  }
+
+  .copyright__text span {
+    font-size: 25px;
+  }
 }

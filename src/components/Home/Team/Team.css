@@ -40,6 +40,7 @@
 .social-icons {
   padding: 10px;
   border-radius: 50%;
+  font-size: 18px;
   color: var(--color-pink);
   background: transparent;
   border: 1px solid #efefef;
@@ -51,4 +52,15 @@
 .social-icons:hover {
   color: var(--color-white);
   background-color: var(--color-pink);
+}
+
+
+@media screen and (min-width: 2000px) {
+  .app__team-teamcardContainer {
+    grid-gap: 5rem;
+  }
+
+  .social-icons {
+    font-size: 27px;
+  }
 }

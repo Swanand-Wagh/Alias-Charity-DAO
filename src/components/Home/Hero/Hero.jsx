@@ -14,7 +14,7 @@ const Hero = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
           adipisci quasi, blanditiis, quidem distinctio suscipit sunt ducimus
           illo veritatis corporis quas! Ipsa obcaecati beatae, aut saepe aliquam
-          corrupti fugit. Cupiditate.
+          corrupti fugit. Cupiditate. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, nihil! Aliquam ipsam, voluptate eius, omnis recusandae quis nostrum ex numquam tenetur quod quos optio fugit dolores, placeat rem? Repellat, maxime! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero doloremque reiciendis dolor iste alias eligendi earum, 
         </p>
         <div className="app__hero__buttonWrapper">
           <button className="custom__button">Contact Us</button>

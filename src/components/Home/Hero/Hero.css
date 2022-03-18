@@ -36,4 +36,27 @@
 
 .app__hero__contentWrapper-right img {
   width: 100%;
+  margin-top: -96px;
+}
+
+@media screen and (min-width: 2000px) {
+  .app__hero-headtext {
+    margin: 2rem 0rem;
+    font-size: 55px;
+    line-height: 75px;
+  }
+
+  .app__hero__contentWrapper-left p {
+    font-size: 25px;
+    margin: 1.5rem 0rem;
+    line-height: 40px;
+  }
+
+  .app__hero__buttonWrapper button {
+    margin-right: 25px;
+  }
+
+  .app__hero__buttonWrapper {
+    margin: 2rem 0;
+  }
 }

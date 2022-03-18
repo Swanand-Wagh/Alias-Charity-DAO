@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
-import { contract_ABI } from "../../utils/constants";
+import { contract_ABI, contract_Address } from "../../utils/constants";
 import toast, { Toaster } from "react-hot-toast";
 
 const { ethereum } = window;
@@ -9,7 +9,7 @@ export const CharityContext = createContext();
 export const CharityDAOProvider = ({ children }) => {
   const { web3, Moralis, user } = useMoralis();
   const [contractABI, setContractABI] = useState(contract_ABI);
-  const [contractAddress, setContractAddress] = useState("");
+  const [contractAddress, setContractAddress] = useState(contract_Address);
 
   const toastStyles = {
     style: {
@@ -21,15 +21,16 @@ export const CharityDAOProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const checkIfWalletIsConnected = async () => {
+    const checkIfMetaMaskExists = async () => {
       try {
-        if (!ethereum) return toast.error("Please install MetaMask.");
+        if (!ethereum)
+          return toast.error("Please install MetaMask!", toastStyles);
       } catch (error) {
         console.log(error);
       }
     };
 
-    checkIfWalletIsConnected();
+    checkIfMetaMaskExists();
   }, []);
 
   return (

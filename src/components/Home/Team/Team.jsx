@@ -20,19 +20,19 @@ const Teamcard = ({ picture, name }) => {
       <p className="p__subHeading">{name}</p>
       <div className="app__teamCard-socialsContainer">
         <span className="social-icons flex__center">
-          <FaFacebookF cursor={"pointer"} size={17} />
+          <FaFacebookF cursor={"pointer"} />
         </span>
         <span className="social-icons flex__center">
-          <FaTwitter cursor={"pointer"} size={17} />
+          <FaTwitter cursor={"pointer"} />
         </span>
         <span className="social-icons flex__center">
-          <FaLinkedinIn cursor={"pointer"} size={17} />
+          <FaLinkedinIn cursor={"pointer"} />
         </span>
         <span className="social-icons flex__center">
-          <FaGooglePlusG cursor={"pointer"} size={17} />
+          <FaGooglePlusG cursor={"pointer"} />
         </span>
         <span className="social-icons flex__center">
-          <FaBehance cursor={"pointer"} size={17} />
+          <FaBehance cursor={"pointer"} />
         </span>
       </div>
     </div>
