@@ -1,47 +1,42 @@
 import React, { useContext, useState } from "react";
-import { useMoralisFile, useWeb3ExecuteFunction } from "react-moralis";
-import './CreateProposal.css';
+import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import "./CreateProposal.css";
 import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
-import dashboardImage from '../../../assets/dashboard/world-ngo-day-mauritius.svg';
+import dashboardImage from "../../../assets/dashboard/world-ngo-day-mauritius.svg";
 
 const CreateProposal = () => {
-  const { toastStyles, contractABI, contractAddress, walletAddress } =
+  const { Moralis } = useMoralis();
+
+  const { toastStyles, contractABI, contractAddress } =
     useContext(CharityContext);
-  // const contractABIJson = JSON.parse(contractABI);
-  // const contractProcessor = useWeb3ExecuteFunction();
-  // const ipfsProcessor = useMoralisFile();
+  const contractProcessor = useWeb3ExecuteFunction();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [amtToBeRaised, setAmtToBeRaised] = useState(0);
 
-  // const addProposal = async (post) => {
-  //   const contentUri = await processContent(post);
-  //   const options = {
-  //     contractAddress: contractAddress,
-  //     functionName: "createProposal",
-  //     abi: contractABIJson,
-  //     params: {
-  //       _parentId: "0x91",
-  // _contentUri: contentUri,
-  //     },
-  //   };
-  //   await contractProcessor.fetch({
-  //     params: options,
-  //     onSuccess: () => toast.success("success", toastStyles),
-  //     onError: (error) => toast.error(error.message, toastStyles),
-  //   });
-  // }
+  const addProposal = async () => {
+    await Moralis.enableWeb3();
+    const options = {
+      contractAddress: contractAddress,
+      functionName: "createProposal",
+      abi: contractABI,
+      params: {
+        id: 1,
+        title,
+        content,
+        amtThreshold: amtToBeRaised,
+      },
+    };
 
-  // const processContent = async (content) => {
-  //   const ipfsResult = await ipfsProcessor.saveFile(
-  //     "post.json",
-  //     { base64: btoa(JSON.stringify(content)) },
-  //     { saveIPFS: true }
-  //   );
-  //   return ipfsResult._ipfs;
-  // };
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () =>
+        toast.success("Event Created Successfully!", toastStyles),
+      onError: (error) => toast.error(error.message, toastStyles),
+    });
+  };
 
   const validateForm = () => {
     let result = !title || !content || !amtToBeRaised ? false : true;
@@ -59,7 +54,7 @@ const CreateProposal = () => {
     if (!validateForm()) {
       return toast.error("Incomplete Form Submission", toastStyles);
     }
-    // addProposal({ title, content, amtToBeRaised });
+    addProposal();
     clearForm();
   };
 
@@ -67,7 +62,7 @@ const CreateProposal = () => {
     <>
       <Toaster />
       <div className="app__dashboard container__bg flex__center section__padding">
-        <h1 className="section__heading">Lorem ipsum dolor sit amet</h1>
+        <h1 className="section__heading">Host an Event</h1>
         <form className="app__dashboard-form" onSubmit={onSubmit}>
           <div className="app__dashboards-form-wrapper flex__center">
             <div className="app__dashboards-form-inputs flex__center">
@@ -100,7 +95,7 @@ const CreateProposal = () => {
             </button>
           </div>
           <div className="app__dashboard-image">
-            <p className="section__heading">Raise Fund For A Reason</p>
+            <p className="section__heading">Raise Funds For A Reason</p>
             <img src={dashboardImage} alt="DashboardImage" />
           </div>
         </form>

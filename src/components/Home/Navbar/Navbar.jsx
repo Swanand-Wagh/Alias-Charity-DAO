@@ -7,22 +7,31 @@ import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = ({ userType }) => {
-  const { toastStyles } = useContext(CharityContext);
   let navigate = useNavigate();
-  const { authenticate, isAuthenticated, logout, user } = useMoralis();
+  const { toastStyles, createNGO } = useContext(CharityContext);
+  const { authenticate, isAuthenticated, isAuthenticating, logout, user } =
+    useMoralis();
+
   const [isNGO, setIsNGO] = useState(undefined);
+  const [isNgoCreated, setIsNgoCreated] = useState(false);
 
   const hideElement = { display: "none" };
   const showElement = { display: "block" };
 
   useEffect(() => {
     if (isNGO !== undefined) {
-      if (isAuthenticated && isNGO && userType === "DONOR") {
-        toast.error("Connect Again using a NGO Account!", toastStyles);
+      if (
+        (isAuthenticated && isNGO && userType === "DONOR") ||
+        (isAuthenticating && !isNGO && userType === "NGO")
+      ) {
+        toast.error("Connect Again using a DONOR Account!", toastStyles);
         logout();
       }
-      if (isAuthenticated && !isNGO && userType === "NGO") {
-        toast.error("Connect Again using a DONOR Account!!", toastStyles);
+      if (
+        (isAuthenticated && !isNGO && userType === "NGO") ||
+        (isAuthenticating && isNGO && userType === "DONOR")
+      ) {
+        toast.error("Connect Again using a NGO Account!!", toastStyles);
         logout();
       }
     }
@@ -36,10 +45,12 @@ const Navbar = ({ userType }) => {
 
   const connectWallet = async () => {
     authenticate().then((u) => {
-      const isNGO = u?.get("isNgo"); // remove ? if error
+      const isNGO = u?.get("isNgo");
       setIsNGO(isNGO);
 
       if (isNGO === undefined) {
+        if (userType === "NGO") createNGO();
+
         const bool = userType === "NGO";
         u.set("isNgo", bool);
         u.save();
@@ -84,7 +95,6 @@ const Navbar = ({ userType }) => {
           {userType && !isAuthenticated && (
             <li onClick={() => connectWallet()}>Connect Wallet</li>
           )}
-          {userType === "NGO" && isAuthenticated && <li>Host Campaign</li>}
           {userType && isAuthenticated && (
             <>
               <li>
