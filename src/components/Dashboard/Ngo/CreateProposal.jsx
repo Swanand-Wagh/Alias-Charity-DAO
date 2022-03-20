@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import dashboardImage from "../../../assets/dashboard/world-ngo-day-mauritius.svg";
 
 const CreateProposal = () => {
-  const { Moralis } = useMoralis();
+  const { Moralis, isAuthenticated } = useMoralis();
 
   const { toastStyles, contractABI, contractAddress } =
     useContext(CharityContext);
@@ -51,11 +51,19 @@ const CreateProposal = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!validateForm()) {
-      return toast.error("Incomplete Form Submission", toastStyles);
+    if (isAuthenticated) {
+      if (!validateForm()) {
+        return toast.error("Incomplete Form Submission", toastStyles);
+      }
+      addProposal();
+      clearForm();
+    } else {
+      clearForm();
+      return toast.error(
+        "Please Connect wallet to Create Proposal!",
+        toastStyles
+      );
     }
-    addProposal();
-    clearForm();
   };
 
   return (
