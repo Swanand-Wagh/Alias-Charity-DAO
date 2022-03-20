@@ -1,16 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import siteLogo from "../../../assets/logo.png";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useNativeBalance } from "react-moralis";
 import { useNavigate } from "react-router-dom";
 import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
+import { getExplorer } from "../../../helpers/networks";
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
   const { toastStyles, createNGO } = useContext(CharityContext);
-  const { authenticate, isAuthenticated, isAuthenticating, logout, user } =
-    useMoralis();
+  const {
+    authenticate,
+    isAuthenticated,
+    isAuthenticating,
+    logout,
+    user,
+    account,
+  } = useMoralis();
+  // const { data: balance } = useNativeBalance();
 
   const [isNGO, setIsNGO] = useState(undefined);
   const [isNgoCreated, setIsNgoCreated] = useState(false);
@@ -79,7 +87,17 @@ const Navbar = ({ userType }) => {
           onClick={() => navigate("/")}
         />
         <ul>
-          <li onClick={() => navigate("/")}>Home</li>
+          {userType && isAuthenticated && account && (
+            <li>
+              <a
+                href={`${getExplorer("0x3")}/address/${account}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View on Etherscan
+              </a>
+            </li>
+          )}
           <li
             onClick={() => navigate("/dashboard/ngo")}
             style={userType ? hideElement : showElement}
