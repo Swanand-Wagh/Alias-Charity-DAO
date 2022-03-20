@@ -53,14 +53,14 @@ const CreateProposal = () => {
     e.preventDefault();
     if (isAuthenticated) {
       if (!validateForm()) {
-        return toast.error("Incomplete Form Submission", toastStyles);
+        return toast.error("Incomplete Form Submission!", toastStyles);
       }
       addProposal();
       clearForm();
     } else {
       clearForm();
       return toast.error(
-        "Please Connect wallet to Create Proposal!",
+        "Please Connect Wallet to Create Proposal!",
         toastStyles
       );
     }

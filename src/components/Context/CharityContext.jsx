@@ -7,10 +7,11 @@ const { ethereum } = window;
 export const CharityContext = createContext();
 
 export const CharityDAOProvider = ({ children }) => {
-  const { web3, Moralis, user } = useMoralis();
+  const { Moralis, isAuthenticated, refetchUserData } = useMoralis();
   const [contractABI, setContractABI] = useState(contract_ABI);
   const [contractAddress, setContractAddress] = useState(contract_Address);
   const contractProcessor = useWeb3ExecuteFunction();
+  const [userWalletBalance, setUserWalletBalance] = useState(0);
 
   const toastStyles = {
     style: {
@@ -20,6 +21,20 @@ export const CharityDAOProvider = ({ children }) => {
       color: "#fff",
     },
   };
+
+  // Enable Web3 and fetch eth balance
+  useEffect(() => {
+    const enable = async () => {
+      await Moralis.enableWeb3();
+      isAuthenticated && refetchUserData();
+      const money = await Moralis.Web3API.account.getNativeBalance({
+        chain: "ropsten",
+      });
+      let eth = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
+      setUserWalletBalance(eth);
+    };
+    enable();
+  }, [Moralis, isAuthenticated]);
 
   useEffect(() => {
     const checkIfMetaMaskExists = async () => {
@@ -60,6 +75,7 @@ export const CharityDAOProvider = ({ children }) => {
           setContractAddress,
           toastStyles,
           createNGO,
+          userWalletBalance,
         }}
       >
         {children}

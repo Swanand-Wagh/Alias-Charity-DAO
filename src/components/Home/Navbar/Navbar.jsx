@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import siteLogo from "../../../assets/logo.png";
-import { useMoralis, useNativeBalance } from "react-moralis";
+import { useMoralis } from "react-moralis";
 import { useNavigate } from "react-router-dom";
 import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
@@ -9,7 +9,8 @@ import { getExplorer } from "../../../helpers/networks";
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
-  const { toastStyles, createNGO } = useContext(CharityContext);
+  const { toastStyles, createNGO, userWalletBalance } =
+    useContext(CharityContext);
   const {
     authenticate,
     isAuthenticated,
@@ -18,10 +19,8 @@ const Navbar = ({ userType }) => {
     user,
     account,
   } = useMoralis();
-  // const { data: balance } = useNativeBalance();
 
   const [isNGO, setIsNGO] = useState(undefined);
-  const [isNgoCreated, setIsNgoCreated] = useState(false);
 
   const hideElement = { display: "none" };
   const showElement = { display: "block" };
@@ -88,15 +87,18 @@ const Navbar = ({ userType }) => {
         />
         <ul>
           {userType && isAuthenticated && account && (
-            <li>
-              <a
-                href={`${getExplorer("0x3")}/address/${account}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View on Etherscan
-              </a>
-            </li>
+            <>
+              <li>
+                <a
+                  href={`${getExplorer("0x3")}/address/${account}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View on Etherscan
+                </a>
+              </li>
+              <li>{userWalletBalance} ETH</li>
+            </>
           )}
           <li
             onClick={() => navigate("/dashboard/ngo")}
