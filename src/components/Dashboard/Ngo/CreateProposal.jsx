@@ -23,7 +23,6 @@ const CreateProposal = () => {
       functionName: "createProposal",
       abi: contractABI,
       params: {
-        id: 1,
         title,
         content,
         amtThreshold: amtToBeRaised,
@@ -113,3 +112,5 @@ const CreateProposal = () => {
 };
 
 export default CreateProposal;
+
+

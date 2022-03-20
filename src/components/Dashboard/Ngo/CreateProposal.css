@@ -1,143 +1,144 @@
 .app__dashboard {
-    flex-direction: column;
-    padding-top: 60px;
-    background-image: url("../../../assets/slider/slider-02.png");
+  flex-direction: column;
+  padding-top: 60px;
+  background-image: url("../../../assets/slider/slider-02.png");
 }
 
 .app__dashboard h1 {
-    color: var(--color-pink);
-    text-transform: uppercase;
-    font-weight: 700;
+  color: var(--color-pink);
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .app__dashboard-form {
-    margin-top: 60px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 10px;
 }
 
 .app__dashboards-form-wrapper {
-    padding: 20px;
-    grid-column: 1/7;
-    flex-direction: column;
-    background-color: var(--color-grey);
-    border-radius: 15px;
+  padding: 20px;
+  grid-column: 1/7;
+  flex-direction: column;
+  background-color: var(--color-grey);
+  border-radius: 15px;
 }
 
 .app__dashboards-form-inputs {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .app__dashboards-form-inputs input {
-    width: 215%;
-    height: 50px;
-    padding: 0 10px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    border-bottom: 1.5px solid rgb(253, 27, 91, 0.25);
-    color: var(--color-pink);
+  width: 215%;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1.5px solid rgb(253, 27, 91, 0.25);
+  color: var(--color-pink);
 }
 
 .app__dashboards-form-inputs input:nth-of-type(2) {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .app__dashboards-form-inputs input::placeholder {
-    color: rgb(253, 27, 91, 0.65);
+  color: rgb(253, 27, 91, 0.65);
 }
 
 .app__dashboards-form-inputs input:focus {
-    outline: 1.5px solid rgb(253, 27, 91, 1);
-    border: none;
-    border-bottom: none;
-    box-shadow: 0 0 10px 1px rgb(253, 27, 91, 0.5);
+  outline: 1.5px solid rgb(253, 27, 91, 1);
+  border: none;
+  border-bottom: none;
+  box-shadow: 0 0 10px 1px rgb(253, 27, 91, 0.5);
 }
 
 .app__dashboards-form-inputs textarea {
-    width: 215%;
-    height: 200px;
-    padding: 5px 10px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    border-bottom: 1.5px solid rgb(253, 27, 91, 0.25);
-    color: var(--color-pink);
+  resize: none;
+  width: 215%;
+  height: 200px;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1.5px solid rgb(253, 27, 91, 0.25);
+  color: var(--color-pink);
 }
 
 .app__dashboards-form-inputs textarea::placeholder {
-    color: rgb(253, 27, 91, 0.65);
+  color: rgb(253, 27, 91, 0.65);
 }
 
 .app__dashboards-form-inputs textarea:focus {
-    outline: 1.5px solid rgb(253, 27, 91, 1);
-    box-shadow: 0 0 10px 1px rgb(253, 27, 91, 0.5);
-    border: none;
-    border-bottom: none;
+  outline: 1.5px solid rgb(253, 27, 91, 1);
+  box-shadow: 0 0 10px 1px rgb(253, 27, 91, 0.5);
+  border: none;
+  border-bottom: none;
 }
 
 .app__dashboards-form-wrapper button {
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .app__dashboard-image {
-    padding: 20px;
-    grid-column: 7/13;
-    background-color: var(--color-grey);
-    border-radius: 15px;
+  padding: 20px;
+  grid-column: 7/13;
+  background-color: var(--color-grey);
+  border-radius: 15px;
 }
 
 .app__dashboard-image p {
-    color: var(--color-pink);
-    font-size: 25px;
-    font-weight: 500;
+  color: var(--color-pink);
+  font-size: 25px;
+  font-weight: 500;
 }
 
 .app__dashboard-image img {
-    width: 100%;
-    object-fit: cover;
-    margin-top: -40px;
+  width: 100%;
+  object-fit: cover;
+  margin-top: -40px;
 }
 
 @media screen and (min-width: 2000px) {
-    .app__dashboard-form {
-        width: 100%;
-    }
+  .app__dashboard-form {
+    width: 100%;
+  }
 
-    .app__dashboards-form-wrapper {
-        padding: 30px;
-    }
+  .app__dashboards-form-wrapper {
+    padding: 30px;
+  }
 
-    .app__dashboards-form-inputs input {
-        width: 240%;
-        height: 65px;
-        padding: 0 15px;
-        font-size: 25px;
-        border-bottom: 1.5px solid rgb(253, 27, 91, 0.5);
-    }
+  .app__dashboards-form-inputs input {
+    width: 240%;
+    height: 65px;
+    padding: 0 15px;
+    font-size: 25px;
+    border-bottom: 1.5px solid rgb(253, 27, 91, 0.5);
+  }
 
-    .app__dashboards-form-inputs input:nth-of-type(2) {
-        margin: 25px 0;
-    }
+  .app__dashboards-form-inputs input:nth-of-type(2) {
+    margin: 25px 0;
+  }
 
-    .app__dashboards-form-inputs textarea {
-        width: 240%;
-        height: 350px;
-        padding: 10px 15px;
-        font-size: 25px;
-        border-bottom: 1.5px solid rgb(253, 27, 91, 0.5);
-    }
+  .app__dashboards-form-inputs textarea {
+    width: 240%;
+    height: 350px;
+    padding: 10px 15px;
+    font-size: 25px;
+    border-bottom: 1.5px solid rgb(253, 27, 91, 0.5);
+  }
 
-    .app__dashboard-image {
-        padding: 30px;
-    }
+  .app__dashboard-image {
+    padding: 30px;
+  }
 
-    .app__dashboard-image p {
-        font-size: 40px;
-    }
+  .app__dashboard-image p {
+    font-size: 40px;
+  }
 }

@@ -2,7 +2,7 @@
 pragma solidity >=0.8.9;
 
 contract Charity {
-    event ProposalCreated(bytes32 indexed ngoID, string indexed postID);
+    event ProposalCreated(bytes32 indexed ngoID, uint256 indexed postID);
 
     event Transfer(
         address from,
@@ -18,8 +18,10 @@ contract Charity {
         bool ngoExists;
     }
 
+    uint256 curr_id = 0;
+
     struct Proposal {
-        string id;
+        uint256 id;
         bytes32 postOwner;
         string title;
         string content;
@@ -30,8 +32,8 @@ contract Charity {
     }
 
     // Map of all NGOs
-    mapping(bytes32 => NGO) ngoRegistry;
-    mapping(string => Proposal) proposalRegistry;
+    mapping(bytes32 => NGO) public ngoRegistry;
+    mapping(uint256 => Proposal) public proposalRegistry;
 
     function createNGO() public {
         bytes32 id = keccak256(abi.encode(msg.sender));
@@ -40,38 +42,32 @@ contract Charity {
         ngoRegistry[id].ngoExists = true;
     }
 
-    /// @notice NGO creates a proposal ie. A Campaign/Event
-    /// @param id Proposal ID
-    /// @param title Title of the Proposal
-    /// @param content Description of the Proposal
-    /// @param amtThreshold Total Funds to be Raised
-    /// @return creationStatus True if proposal was created successfully. Otherwise false.
     function createProposal(
-        string memory id,
         string memory title,
         string memory content,
         uint256 amtThreshold
     ) public returns (bool) {
         bytes32 NGOId = keccak256(abi.encode(msg.sender));
         if (ngoRegistry[NGOId].ngoExists) {
-            if (!proposalRegistry[id].proposalExists) {
-                proposalRegistry[id].proposalExists = true;
-                proposalRegistry[id].closed = false;
-                proposalRegistry[id].postOwner = NGOId;
-                proposalRegistry[id].id = id;
-                proposalRegistry[id].title = title;
-                proposalRegistry[id].content = content;
-                proposalRegistry[id].amt = 0;
-                proposalRegistry[id].amtThreshold = amtThreshold;
+            uint256 id = curr_id;
+            curr_id += 1;
 
-                emit ProposalCreated(NGOId, id);
-                return true;
-            }
+            proposalRegistry[id].proposalExists = true;
+            proposalRegistry[id].closed = false;
+            proposalRegistry[id].postOwner = NGOId;
+            proposalRegistry[id].id = id;
+            proposalRegistry[id].title = title;
+            proposalRegistry[id].content = content;
+            proposalRegistry[id].amt = 0;
+            proposalRegistry[id].amtThreshold = amtThreshold;
+
+            emit ProposalCreated(NGOId, id);
+            return true;
         }
         return false;
     }
 
-    function transferFunds(string memory proposalID, string memory message)
+    function transferFunds(uint256 proposalID, string memory message)
         public
         payable
     {
@@ -90,7 +86,7 @@ contract Charity {
                         message,
                         block.timestamp
                     );
-                    proposalRegistry[proposalID].amt += msg.value;
+                    proposalRegistry[proposalID].amt += msg.value * (1 ether);
 
                     if (proposalReachedThreshold(proposalID)) {
                         proposalRegistry[proposalID].closed = true;
@@ -100,7 +96,7 @@ contract Charity {
         }
     }
 
-    function proposalReachedThreshold(string memory proposalID)
+    function proposalReachedThreshold(uint256 proposalID)
         private
         view
         returns (bool)
@@ -110,7 +106,7 @@ contract Charity {
             proposalRegistry[proposalID].amtThreshold;
     }
 
-    function getProposal(string memory proposalID)
+    function getProposal(uint256 proposalID)
         public
         view
         returns (
