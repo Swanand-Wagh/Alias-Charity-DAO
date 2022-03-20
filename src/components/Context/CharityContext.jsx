@@ -35,7 +35,7 @@ export const CharityDAOProvider = ({ children }) => {
       await Moralis.enableWeb3();
       isAuthenticated && refetchUserData();
       const money = await Moralis.Web3API.account.getNativeBalance({
-        chain: "ropsten",
+        chain: "mumbai",
       });
       let eth = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
       setUserWalletBalance(eth);
@@ -91,3 +91,4 @@ export const CharityDAOProvider = ({ children }) => {
     </>
   );
 };
+

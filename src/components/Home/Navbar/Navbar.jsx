@@ -90,14 +90,14 @@ const Navbar = ({ userType }) => {
             <>
               <li>
                 <a
-                  href={`${getExplorer("0x3")}/address/${account}`}
+                  href={`${getExplorer("0x13881")}/address/${account}`}
                   target="_blank"
                   rel="noreferrer"
                 >
                   View on Etherscan
                 </a>
               </li>
-              <li>Balance: {userWalletBalance} ETH</li>
+              <li>Balance: {userWalletBalance} MATIC</li>
             </>
           )}
           <li
