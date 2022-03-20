@@ -22,6 +22,13 @@ export const CharityDAOProvider = ({ children }) => {
     },
   };
 
+  const getEllipsisTxt = (str, n = 6) => {
+    if (str) {
+      return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
+    }
+    return "";
+  };
+
   // Enable Web3 and fetch eth balance
   useEffect(() => {
     const enable = async () => {
@@ -76,6 +83,7 @@ export const CharityDAOProvider = ({ children }) => {
           toastStyles,
           createNGO,
           userWalletBalance,
+          getEllipsisTxt,
         }}
       >
         {children}

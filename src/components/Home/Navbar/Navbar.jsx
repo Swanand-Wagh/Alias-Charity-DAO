@@ -9,7 +9,7 @@ import { getExplorer } from "../../../helpers/networks";
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
-  const { toastStyles, createNGO, userWalletBalance } =
+  const { toastStyles, createNGO, userWalletBalance, getEllipsisTxt } =
     useContext(CharityContext);
   const {
     authenticate,
@@ -97,7 +97,7 @@ const Navbar = ({ userType }) => {
                   View on Etherscan
                 </a>
               </li>
-              <li>{userWalletBalance} ETH</li>
+              <li>Balance: {userWalletBalance} ETH</li>
             </>
           )}
           <li
@@ -119,7 +119,9 @@ const Navbar = ({ userType }) => {
             <>
               <li>
                 {userType} :{" "}
-                <span style={{ fontWeight: "500" }}>{user.getUsername()}</span>
+                <span style={{ fontWeight: "500" }}>
+                  {getEllipsisTxt(user.getUsername())}
+                </span>
               </li>
               <li
                 onClick={() => {
