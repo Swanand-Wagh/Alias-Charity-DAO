@@ -30,6 +30,10 @@
   color: var(--color-pink);
 }
 
+.app__navbar ul li a:hover {
+  color: var(--color-pink);
+}
+
 @media screen and (min-width: 2000px) {
   .app__navbar {
     padding: 20px 150px;
