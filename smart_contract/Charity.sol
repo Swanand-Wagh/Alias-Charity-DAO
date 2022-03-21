@@ -2,9 +2,18 @@
 pragma solidity >=0.8.9;
 
 contract Charity {
-    event ProposalCreated(bytes32 indexed ngoID, uint256 indexed postID);
+    event ProposalIDList(bytes32 indexed ngoID, uint256 indexed proposalID);
+
+    event ProposalTable(
+        address ngoAddress,
+        uint256 indexed proposalID,
+        string title,
+        string description,
+        uint256 amtThreshold
+    );
 
     event Transfer(
+        uint256 indexed proposalID,
         address from,
         address receiver,
         uint256 amount,
@@ -59,9 +68,10 @@ contract Charity {
             proposalRegistry[id].title = title;
             proposalRegistry[id].content = content;
             proposalRegistry[id].amt = 0;
-            proposalRegistry[id].amtThreshold = amtThreshold;
+            proposalRegistry[id].amtThreshold = amtThreshold * (1 ether);
 
-            emit ProposalCreated(NGOId, id);
+            emit ProposalIDList(NGOId, id);
+            emit ProposalTable(msg.sender, id, title, content, amtThreshold);
             return true;
         }
         return false;
@@ -80,13 +90,14 @@ contract Charity {
                 if (msg.sender != receiver) {
                     payable(receiver).transfer(msg.value);
                     emit Transfer(
+                        proposalID,
                         msg.sender,
                         receiver,
                         msg.value,
                         message,
                         block.timestamp
                     );
-                    proposalRegistry[proposalID].amt += msg.value * (1 ether);
+                    proposalRegistry[proposalID].amt += msg.value;
 
                     if (proposalReachedThreshold(proposalID)) {
                         proposalRegistry[proposalID].closed = true;

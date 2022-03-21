@@ -1,5 +1,41 @@
 [
     {
+        "inputs": [],
+        "name": "createNGO",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "title",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "content",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amtThreshold",
+                "type": "uint256"
+            }
+        ],
+        "name": "createProposal",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "anonymous": false,
         "inputs": [
             {
@@ -10,17 +46,60 @@
             },
             {
                 "indexed": true,
-                "internalType": "string",
-                "name": "postID",
-                "type": "string"
+                "internalType": "uint256",
+                "name": "proposalID",
+                "type": "uint256"
             }
         ],
-        "name": "ProposalCreated",
+        "name": "ProposalIDList",
         "type": "event"
     },
     {
         "anonymous": false,
         "inputs": [
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "ngoAddress",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "proposalID",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "title",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "description",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amtThreshold",
+                "type": "uint256"
+            }
+        ],
+        "name": "ProposalTable",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "proposalID",
+                "type": "uint256"
+            },
             {
                 "indexed": false,
                 "internalType": "address",
@@ -56,60 +135,37 @@
         "type": "event"
     },
     {
-        "inputs": [],
-        "name": "createNGO",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [
-            {
-                "internalType": "string",
-                "name": "id",
-                "type": "string"
-            },
-            {
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
-            },
-            {
-                "internalType": "string",
-                "name": "content",
-                "type": "string"
-            },
             {
                 "internalType": "uint256",
-                "name": "amtThreshold",
+                "name": "proposalID",
                 "type": "uint256"
-            }
-        ],
-        "name": "createProposal",
-        "outputs": [
+            },
             {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
+                "internalType": "string",
+                "name": "message",
+                "type": "string"
             }
         ],
-        "stateMutability": "nonpayable",
+        "name": "transferFunds",
+        "outputs": [],
+        "stateMutability": "payable",
         "type": "function"
     },
     {
         "inputs": [
             {
-                "internalType": "string",
+                "internalType": "uint256",
                 "name": "proposalID",
-                "type": "string"
+                "type": "uint256"
             }
         ],
         "name": "getProposal",
         "outputs": [
             {
-                "internalType": "address",
+                "internalType": "bytes32",
                 "name": "",
-                "type": "address"
+                "type": "bytes32"
             },
             {
                 "internalType": "string",
@@ -143,19 +199,84 @@
     {
         "inputs": [
             {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "ngoRegistry",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "_id",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "wallet_address",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "ngoExists",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "proposalRegistry",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "postOwner",
+                "type": "bytes32"
+            },
+            {
                 "internalType": "string",
-                "name": "proposalID",
+                "name": "title",
                 "type": "string"
             },
             {
                 "internalType": "string",
-                "name": "message",
+                "name": "content",
                 "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amt",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amtThreshold",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "proposalExists",
+                "type": "bool"
+            },
+            {
+                "internalType": "bool",
+                "name": "closed",
+                "type": "bool"
             }
         ],
-        "name": "transferFunds",
-        "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "view",
         "type": "function"
     }
 ]
