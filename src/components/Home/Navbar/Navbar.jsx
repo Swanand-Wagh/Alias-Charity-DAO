@@ -94,7 +94,7 @@ const Navbar = ({ userType }) => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  View on Etherscan
+                  View on Polyscan
                 </a>
               </li>
               <li>Balance: {userWalletBalance} MATIC</li>

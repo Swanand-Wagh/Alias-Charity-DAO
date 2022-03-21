@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import dashboardImage from "../../../assets/dashboard/world-ngo-day-mauritius.svg";
 
 const CreateProposal = () => {
-  const { Moralis, isAuthenticated } = useMoralis();
+  const { Moralis, isAuthenticated, isWeb3Enabled } = useMoralis();
 
   const { toastStyles, contractABI, contractAddress } =
     useContext(CharityContext);
@@ -17,7 +17,7 @@ const CreateProposal = () => {
   const [amtToBeRaised, setAmtToBeRaised] = useState(0);
 
   const addProposal = async () => {
-    await Moralis.enableWeb3();
+    if (!isWeb3Enabled) await Moralis.enableWeb3();
     const options = {
       contractAddress: contractAddress,
       functionName: "createProposal",
@@ -112,5 +112,3 @@ const CreateProposal = () => {
 };
 
 export default CreateProposal;
-
-

@@ -7,7 +7,13 @@ const { ethereum } = window;
 export const CharityContext = createContext();
 
 export const CharityDAOProvider = ({ children }) => {
-  const { Moralis, isAuthenticated, refetchUserData } = useMoralis();
+  const {
+    Moralis,
+    isAuthenticated,
+    refetchUserData,
+    isWeb3Enabled,
+    isWeb3EnableLoading,
+  } = useMoralis();
   const [contractABI, setContractABI] = useState(contract_ABI);
   const [contractAddress, setContractAddress] = useState(contract_Address);
   const contractProcessor = useWeb3ExecuteFunction();
@@ -32,13 +38,13 @@ export const CharityDAOProvider = ({ children }) => {
   // Enable Web3 and fetch eth balance
   useEffect(() => {
     const enable = async () => {
-      await Moralis.enableWeb3();
+      if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
       isAuthenticated && refetchUserData();
       const money = await Moralis.Web3API.account.getNativeBalance({
         chain: "mumbai",
       });
-      let eth = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
-      setUserWalletBalance(eth);
+      let matic = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
+      setUserWalletBalance(matic);
     };
     enable();
   }, [Moralis, isAuthenticated]);
@@ -57,7 +63,7 @@ export const CharityDAOProvider = ({ children }) => {
   }, []);
 
   const createNGO = async () => {
-    await Moralis.enableWeb3();
+    if (!isWeb3Enabled) await Moralis.enableWeb3();
     const options = {
       contractAddress: contractAddress,
       functionName: "createNGO",
@@ -91,4 +97,3 @@ export const CharityDAOProvider = ({ children }) => {
     </>
   );
 };
-

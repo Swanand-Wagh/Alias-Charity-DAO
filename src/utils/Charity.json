@@ -135,6 +135,31 @@
         "type": "event"
     },
     {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "proposalID",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amountReceived",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "isClosed",
+                "type": "bool"
+            }
+        ],
+        "name": "isProposalOpen",
+        "type": "event"
+    },
+    {
         "inputs": [
             {
                 "internalType": "uint256",
