@@ -1,19 +1,12 @@
 import React from "react";
 import { useMoralisQuery } from "react-moralis";
-import { CharityContext } from "../../Context/CharityContext";
+import Proposal from "./Proposal";
 
 const FetchProposals = () => {
-    // const queryProposal = useMoralisQuery(
-    //   "Proposals",
-    //   (query) => query.equalTo("categoryId", selectedCategory["categoryId"]),
-    //   [selectedCategory],
-    //   { live: true }
-    // );
+  const { data } = useMoralisQuery("ProposalTable");
 
-    // const fetched_Proposals = JSON.parse(
-    //   JSON.stringify(queryProposal.data, ["postId", "contentId", "postOwner"])
-    // ).reverse();
-    // const hasProposals = fetched_Proposals.length > 0 ? true : false;
+  const fetchedProposals = JSON.parse(JSON.stringify(data));
+  const hasProposals = fetchedProposals.length > 0 ? true : false;
 
   const emptyResult = (
     <div>
@@ -23,14 +16,13 @@ const FetchProposals = () => {
 
   const proposalResult = (
     <div>
-      {/* {fetched_Proposals.map((post) => (
-        <Post key={post["postId"]} post={post} />
-      ))} */}
+      {fetchedProposals.map((proposal) => {
+        return <Proposal key={proposal["proposalID"]} proposal={proposal} />;
+      })}
     </div>
   );
 
-  //   return hasProposals ? proposalResult : emptyResult;
-  return true ? proposalResult : emptyResult;
+  return hasProposals ? proposalResult : emptyResult;
 };
 
 export default FetchProposals;
