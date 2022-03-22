@@ -1,4 +1,4 @@
-import abi from "./Charity.json";
+import abi from "./ABI.json";
 
 export const contract_ABI = abi;
 
