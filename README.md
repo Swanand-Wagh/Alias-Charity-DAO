@@ -1,4 +1,4 @@
-# Alias Charity System using Blokchain
+# Alias Charity System using Blockchain
 
 Numerous scandals related to the traditional charity processes affected the
 way public perceives charity and this increased the mistrust in charitable organizations.
