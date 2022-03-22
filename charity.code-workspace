@@ -1,0 +1,36 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.tabSize": 2,
+    "editor.wordWrapColumn": 120,
+    "eslint.codeActionsOnSave.mode": "problems",
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "html.format.endWithNewline": true,
+    "html.format.indentInnerHtml": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.useTabs": false,
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "formulahendry.auto-close-tag",
+      "formulahendry.auto-close-tag",
+      "dbaeumer.vscode-eslint",
+      "wayou.vscode-todo-highlight",
+      "stylelint.vscode-stylelint",
+      "gruntfuggly.todo-tree"
+    ]
+  }
+}

@@ -14,4 +14,3 @@ export const networkConfig = {
 };
 
 export const getExplorer = (chain) => networkConfig[chain]?.blockExplorerUrl;
-

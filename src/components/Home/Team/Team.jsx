@@ -15,23 +15,23 @@ import {
 
 const Teamcard = ({ picture, name }) => {
   return (
-    <div className="app__teamCard flex__center">
+    <div className='app__teamCard flex__center'>
       <img src={picture} alt={name} title={name} />
-      <p className="p__subHeading">{name}</p>
-      <div className="app__teamCard-socialsContainer">
-        <span className="social-icons flex__center">
+      <p className='p__subHeading'>{name}</p>
+      <div className='app__teamCard-socialsContainer'>
+        <span className='social-icons flex__center'>
           <FaFacebookF cursor={"pointer"} />
         </span>
-        <span className="social-icons flex__center">
+        <span className='social-icons flex__center'>
           <FaTwitter cursor={"pointer"} />
         </span>
-        <span className="social-icons flex__center">
+        <span className='social-icons flex__center'>
           <FaLinkedinIn cursor={"pointer"} />
         </span>
-        <span className="social-icons flex__center">
+        <span className='social-icons flex__center'>
           <FaGooglePlusG cursor={"pointer"} />
         </span>
-        <span className="social-icons flex__center">
+        <span className='social-icons flex__center'>
           <FaBehance cursor={"pointer"} />
         </span>
       </div>
@@ -41,12 +41,12 @@ const Teamcard = ({ picture, name }) => {
 
 const Team = () => {
   return (
-    <div className="app__team section__padding">
-      <h2 className="section__heading">Our Team</h2>
-      <div className="app__team-teamcardContainer">
-        <Teamcard picture={personOne} name="James" />
-        <Teamcard picture={personTwo} name="Albert" />
-        <Teamcard picture={personThree} name="Johns" />
+    <div className='app__team section__padding'>
+      <h2 className='section__heading'>Our Team</h2>
+      <div className='app__team-teamcardContainer'>
+        <Teamcard picture={personOne} name='James' />
+        <Teamcard picture={personTwo} name='Albert' />
+        <Teamcard picture={personThree} name='Johns' />
       </div>
     </div>
   );

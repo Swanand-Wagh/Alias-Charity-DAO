@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Navbar.css";
-import siteLogo from "../../../assets/logo.png";
-import { useMoralis } from "react-moralis";
 import { useNavigate } from "react-router-dom";
+import { useMoralis } from "react-moralis";
 import { CharityContext } from "../../Context/CharityContext";
 import toast, { Toaster } from "react-hot-toast";
 import { getExplorer } from "../../../helpers/networks";
+import siteLogo from "../../../assets/logo.png";
+import "./Navbar.css";
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
@@ -78,11 +78,11 @@ const Navbar = ({ userType }) => {
   return (
     <>
       <Toaster />
-      <nav className="app__navbar flex__center section__padding">
+      <nav className='app__navbar flex__center section__padding'>
         <img
           src={siteLogo}
-          title="Logo"
-          alt="logo"
+          title='Logo'
+          alt='logo'
           onClick={() => navigate("/")}
         />
         <ul>
@@ -91,8 +91,8 @@ const Navbar = ({ userType }) => {
               <li>
                 <a
                   href={`${getExplorer("0x13881")}/address/${account}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
                 >
                   View on Polyscan
                 </a>

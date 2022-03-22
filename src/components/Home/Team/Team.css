@@ -54,7 +54,6 @@
   background-color: var(--color-pink);
 }
 
-
 @media screen and (min-width: 2000px) {
   .app__team-teamcardContainer {
     grid-gap: 5rem;

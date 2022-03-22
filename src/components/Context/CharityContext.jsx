@@ -14,6 +14,7 @@ export const CharityDAOProvider = ({ children }) => {
     isWeb3Enabled,
     isWeb3EnableLoading,
   } = useMoralis();
+
   const [contractABI, setContractABI] = useState(contract_ABI);
   const [contractAddress, setContractAddress] = useState(contract_Address);
   const contractProcessor = useWeb3ExecuteFunction();
@@ -35,7 +36,7 @@ export const CharityDAOProvider = ({ children }) => {
     return "";
   };
 
-  // Enable Web3 and fetch eth balance
+  // Enable Web3 and fetch matic balance
   useEffect(() => {
     const enable = async () => {
       if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();

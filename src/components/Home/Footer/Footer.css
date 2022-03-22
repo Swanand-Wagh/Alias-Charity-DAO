@@ -119,7 +119,6 @@
   cursor: pointer;
 }
 
-
 @media screen and (min-width: 2000px) {
   .app__footer-container-heading {
     font-size: 30px;
