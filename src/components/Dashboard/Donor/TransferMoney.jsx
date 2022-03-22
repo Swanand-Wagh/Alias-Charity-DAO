@@ -1,30 +1,45 @@
-import React, { useContext, useEffect, useState } from "react";
-import Loader from "./Loader";
-import { useMoralis } from "react-moralis";
-import toast, { Toaster } from "react-hot-toast";
+import React, { useContext, useState } from "react";
+import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { CharityContext } from "../../Context/CharityContext";
+import toast, { Toaster } from "react-hot-toast";
 import polygonLogo from "../../../assets/dashboard/polygon.png";
+import Loader from "./Loader";
 
-const TransferMoney = ({ showmodal }) => {
-  const { Moralis, user, web3, isAuthenticated } = useMoralis();
+const TransferMoney = ({ showmodal, proposalID }) => {
+  const {
+    Moralis,
+    user,
+    web3,
+    isAuthenticated,
+    isWeb3Enabled,
+    isWeb3EnableLoading,
+  } = useMoralis();
   const { toastStyles, contractABI, contractAddress } =
     useContext(CharityContext);
+  const contractProcessor = useWeb3ExecuteFunction();
 
   const [message, setMessage] = useState("");
   const [amount, setAmount] = useState(0);
 
   const transfer = async () => {
-    let Charity = new web3.eth.Contract(contractABI, contractAddress);
-    const currentUser = user.get("ethAddress");
-    const id = await Charity.methods
-      .transferFunds(id, message)
-      .send({
-        from: currentUser,
-        value: Moralis.Units.ETH(amount),
-      })
-      .then(() => {
-        toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles);
-      });
+    if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
+    const options = {
+      contractAddress: contractAddress,
+      functionName: "transferFunds",
+      abi: contractABI,
+      params: {
+        proposalID,
+        message,
+      },
+      msgValue: Moralis.Units.ETH(amount),
+    };
+
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () =>
+        toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
+      onError: (error) => toast.error(error.message, toastStyles),
+    });
   };
 
   const validateForm = () => {
@@ -58,45 +73,45 @@ const TransferMoney = ({ showmodal }) => {
   return (
     <>
       <Toaster />
-      <div className="app__transferMoney flex__center">
-        <div className="modal__close">
+      <div className='app__transferMoney flex__center'>
+        <div className='modal__close'>
           <button
-            title="Close"
-            className="p__subHeading"
+            title='Close'
+            className='p__subHeading'
             onClick={() => showmodal(false)}
           >
             X
           </button>
         </div>
         <form onSubmit={onSubmit}>
-          <div className="app__transferMoney-info-container">
-            <div className="app__transferMoney-icons-container">
-              <div className="app__transferMoney-icons-container-polygon flex__center">
-                <img src={polygonLogo} title="Polygon" alt="Polygon" />
-                <p style={{ marginLeft: ".65rem" }} className="p__subHeading">
+          <div className='app__transferMoney-info-container'>
+            <div className='app__transferMoney-icons-container'>
+              <div className='app__transferMoney-icons-container-polygon flex__center'>
+                <img src={polygonLogo} title='Polygon' alt='Polygon' />
+                <p style={{ marginLeft: ".65rem" }} className='p__subHeading'>
                   Polygon
                 </p>
               </div>
             </div>
-            <div className="app__transferMoney-info-container-userName">
-              <p className="p__subHeading">
+            <div className='app__transferMoney-info-container-userName'>
+              <p className='p__subHeading'>
                 {user ? user.getUsername() : "....."}
               </p>
             </div>
           </div>
-          <div className="app__transferMoney-input-container">
+          <div className='app__transferMoney-input-container'>
             <input
-              placeholder="Amount (MATIC)"
-              name="amount"
-              type="number"
-              step="0.0001"
+              placeholder='Amount (MATIC)'
+              name='amount'
+              type='number'
+              step='0.0001'
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
             />
             <input
-              placeholder="Enter Message"
-              name="message"
-              type="text"
+              placeholder='Enter Message'
+              name='message'
+              type='text'
               onChange={(e) => setMessage(e.target.value)}
               value={message}
             />
@@ -104,7 +119,7 @@ const TransferMoney = ({ showmodal }) => {
             {false ? (
               <Loader />
             ) : (
-              <button className="transfer__button custom__button">
+              <button className='transfer__button custom__button'>
                 Transfer 💸
               </button>
             )}
