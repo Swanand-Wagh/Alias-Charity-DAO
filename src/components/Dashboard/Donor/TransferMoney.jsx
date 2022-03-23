@@ -5,8 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import polygonLogo from '../../../assets/dashboard/polygon.png';
 import Loader from './Loader';
 
-const TransferMoney = ({ showmodal, proposalID }) => {
-  const { Moralis, user, web3, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
+const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
+  const { Moralis, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
 
   const { toastStyles, contractABI, contractAddress } = useContext(CharityContext);
   const contractProcessor = useWeb3ExecuteFunction();
@@ -82,7 +82,12 @@ const TransferMoney = ({ showmodal, proposalID }) => {
               </div>
             </div>
             <div className="app__transferMoney-info-container-userName">
-              <p className="p__subHeading">{user ? user.getUsername() : '.....'}</p>
+              <p style={{ marginTop: '16px' }} className="p__subHeading">
+                NGO:{' '}
+                <span style={{ fontSize: '16px' }}>
+                  {ngoWalletAddress ? ngoWalletAddress : '.....'}
+                </span>
+              </p>
             </div>
           </div>
           <div className="app__transferMoney-input-container">

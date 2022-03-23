@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useMoralisQuery } from 'react-moralis';
 import TransferMoney from './TransferMoney';
 import Proposal from './Proposal';
@@ -8,7 +8,7 @@ const FetchProposals = () => {
   const info = useMoralisQuery('isProposalOpen');
   const [modalStatus, setModalStatus] = useState(false);
   const [proposalID, setProposalID] = useState();
-  const [isProposalFetched, setIsProposalFetched] = useState(true);
+  const [ngoWalletAddress, setNgoWalletAddress] = useState('');
 
   const fetchedProposals = JSON.parse(JSON.stringify(data));
   const hasProposals = fetchedProposals.length > 0 ? true : false;
@@ -34,23 +34,27 @@ const FetchProposals = () => {
     <div className="fetchProposalResult-dashboard flex__center section__padding">
       <h1>Current Events</h1>
       <div className="proposalResult">
-        {isProposalFetched &&
-          fetchedProposals.map((proposal) => {
-            return (
-              !isProposalClose(proposal['proposalID']) && (
-                <Proposal
-                  key={proposal['proposalID']}
-                  proposal={proposal}
-                  showmodal={setModalStatus}
-                  setProposalID={setProposalID}
-                />
-              )
-            );
-          })}
+        {fetchedProposals.map((proposal) => {
+          return (
+            !isProposalClose(proposal['proposalID']) && (
+              <Proposal
+                key={proposal['proposalID']}
+                proposal={proposal}
+                showmodal={setModalStatus}
+                setProposalID={setProposalID}
+                setNgoWalletAddress={setNgoWalletAddress}
+              />
+            )
+          );
+        })}
       </div>
       {modalStatus && (
         <div className="TransferMoney__modal flex__center">
-          <TransferMoney showmodal={setModalStatus} proposalID={proposalID} />
+          <TransferMoney
+            showmodal={setModalStatus}
+            proposalID={proposalID}
+            ngoWalletAddress={ngoWalletAddress}
+          />
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@ import { useMoralis, useMoralisQuery } from 'react-moralis';
 import { getExplorer } from '../../../helpers/networks';
 import './Proposal.css';
 
-const Proposal = ({ proposal, showmodal, setProposalID, isProposalClose }) => {
+const Proposal = ({ proposal, showmodal, setProposalID, setNgoWalletAddress }) => {
   const { ngoAddress, proposalID, title, description, amtThreshold } = proposal;
   const { data } = useMoralisQuery('DonationTable');
   const { Moralis } = useMoralis();
@@ -27,7 +27,7 @@ const Proposal = ({ proposal, showmodal, setProposalID, isProposalClose }) => {
         <p className="p__normal">Amout received till now - {fetchAmountReceived()} MATIC</p>
         <div className="proposal__card-buttonsContainer">
           <a
-            href={`${getExplorer('0x13881')}/address/${ngoAddress}`}
+            href={`${getExplorer('0x13881')}/address/${ngoAddress}#internaltx`}
             target="_blank"
             rel="noreferrer"
             className="custom__button"
@@ -38,6 +38,7 @@ const Proposal = ({ proposal, showmodal, setProposalID, isProposalClose }) => {
             className="custom__button"
             onClick={() => {
               setProposalID(proposalID);
+              setNgoWalletAddress(ngoAddress);
               showmodal(true);
             }}
           >
