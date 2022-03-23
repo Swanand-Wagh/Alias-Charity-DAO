@@ -9,7 +9,7 @@
       "jsx": true
     }
   },
-  "extends": ["prettier", "plugin:react/recommended"],
+  "extends": ["prettier"],
   "env": {
     "browser": true,
     "jest": true

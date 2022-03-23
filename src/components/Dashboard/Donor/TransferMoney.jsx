@@ -14,6 +14,7 @@ const TransferMoney = ({ showmodal, proposalID }) => {
     isWeb3Enabled,
     isWeb3EnableLoading,
   } = useMoralis();
+
   const { toastStyles, contractABI, contractAddress } =
     useContext(CharityContext);
   const contractProcessor = useWeb3ExecuteFunction();
