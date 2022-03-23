@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useMoralisQuery } from "react-moralis";
-import TransferMoney from "./TransferMoney";
-import Proposal from "./Proposal";
+import React, { useEffect, useState } from 'react';
+import { useMoralisQuery } from 'react-moralis';
+import TransferMoney from './TransferMoney';
+import Proposal from './Proposal';
 
 const FetchProposals = () => {
-  const { data } = useMoralisQuery("ProposalTable");
-  const info = useMoralisQuery("isProposalOpen");
+  const { data } = useMoralisQuery('ProposalTable');
+  const info = useMoralisQuery('isProposalOpen');
   const [modalStatus, setModalStatus] = useState(false);
   const [proposalID, setProposalID] = useState();
   const [isProposalFetched, setIsProposalFetched] = useState(true);
@@ -31,15 +31,15 @@ const FetchProposals = () => {
   );
 
   const proposalResult = (
-    <div className='fetchProposalResult-dashboard flex__center section__padding'>
+    <div className="fetchProposalResult-dashboard flex__center section__padding">
       <h1>Current Events</h1>
-      <div className='proposalResult'>
+      <div className="proposalResult">
         {isProposalFetched &&
           fetchedProposals.map((proposal) => {
             return (
-              !isProposalClose(proposal["proposalID"]) && (
+              !isProposalClose(proposal['proposalID']) && (
                 <Proposal
-                  key={proposal["proposalID"]}
+                  key={proposal['proposalID']}
                   proposal={proposal}
                   showmodal={setModalStatus}
                   setProposalID={setProposalID}
@@ -49,7 +49,7 @@ const FetchProposals = () => {
           })}
       </div>
       {modalStatus && (
-        <div className='TransferMoney__modal flex__center'>
+        <div className="TransferMoney__modal flex__center">
           <TransferMoney showmodal={setModalStatus} proposalID={proposalID} />
         </div>
       )}

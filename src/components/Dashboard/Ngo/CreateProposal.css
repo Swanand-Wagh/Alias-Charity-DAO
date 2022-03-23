@@ -1,7 +1,7 @@
 .app__dashboard {
   flex-direction: column;
   padding-top: 60px;
-  background-image: url("../../../assets/slider/slider-02.png");
+  background-image: url('../../../assets/slider/slider-02.png');
 }
 
 .app__dashboard h1 {

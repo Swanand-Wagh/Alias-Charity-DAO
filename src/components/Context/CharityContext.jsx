@@ -1,19 +1,14 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import { contract_ABI, contract_Address } from "../../utils/constants";
-import toast, { Toaster } from "react-hot-toast";
+import React, { createContext, useEffect, useState } from 'react';
+import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
+import { contract_ABI, contract_Address } from '../../utils/constants';
+import toast, { Toaster } from 'react-hot-toast';
 
 const { ethereum } = window;
 export const CharityContext = createContext();
 
 export const CharityDAOProvider = ({ children }) => {
-  const {
-    Moralis,
-    isAuthenticated,
-    refetchUserData,
-    isWeb3Enabled,
-    isWeb3EnableLoading,
-  } = useMoralis();
+  const { Moralis, isAuthenticated, refetchUserData, isWeb3Enabled, isWeb3EnableLoading } =
+    useMoralis();
 
   const [contractABI, setContractABI] = useState(contract_ABI);
   const [contractAddress, setContractAddress] = useState(contract_Address);
@@ -22,10 +17,10 @@ export const CharityDAOProvider = ({ children }) => {
 
   const toastStyles = {
     style: {
-      marginTop: "4.25rem",
-      fontWeight: "600",
-      background: "#333",
-      color: "#fff",
+      marginTop: '4.25rem',
+      fontWeight: '600',
+      background: '#333',
+      color: '#fff',
     },
   };
 
@@ -33,7 +28,7 @@ export const CharityDAOProvider = ({ children }) => {
     if (str) {
       return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
     }
-    return "";
+    return '';
   };
 
   // Enable Web3 and fetch matic balance
@@ -42,7 +37,7 @@ export const CharityDAOProvider = ({ children }) => {
       if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
       isAuthenticated && refetchUserData();
       const money = await Moralis.Web3API.account.getNativeBalance({
-        chain: "mumbai",
+        chain: 'mumbai',
       });
       let matic = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
       setUserWalletBalance(matic);
@@ -53,8 +48,7 @@ export const CharityDAOProvider = ({ children }) => {
   useEffect(() => {
     const checkIfMetaMaskExists = async () => {
       try {
-        if (!ethereum)
-          return toast.error("Please install MetaMask!", toastStyles);
+        if (!ethereum) return toast.error('Please install MetaMask!', toastStyles);
       } catch (error) {
         console.log(error);
       }
@@ -67,13 +61,13 @@ export const CharityDAOProvider = ({ children }) => {
     if (!isWeb3Enabled) await Moralis.enableWeb3();
     const options = {
       contractAddress: contractAddress,
-      functionName: "createNGO",
+      functionName: 'createNGO',
       abi: contractABI,
     };
 
     await contractProcessor.fetch({
       params: options,
-      onSuccess: () => toast.success("NGO Created Successfully!", toastStyles),
+      onSuccess: () => toast.success('NGO Created Successfully!', toastStyles),
       onError: (error) => toast.error(error.message, toastStyles),
     });
   };

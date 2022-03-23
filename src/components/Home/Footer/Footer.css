@@ -69,8 +69,7 @@
   letter-spacing: 0.1rem;
 }
 
-.app__footer-container-services-content:hover
-  .app__footer-container-findus-content-icons {
+.app__footer-container-services-content:hover .app__footer-container-findus-content-icons {
   color: var(--color-pink);
 }
 
@@ -91,8 +90,7 @@
   margin-right: 10px;
 }
 
-.app__footer-container-findus-content:hover
-  .app__footer-container-findus-content-icons {
+.app__footer-container-findus-content:hover .app__footer-container-findus-content-icons {
   color: var(--color-pink);
 }
 

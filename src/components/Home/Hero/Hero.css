@@ -1,7 +1,7 @@
 .app__hero {
   align-items: flex-start;
   gap: 20px;
-  background-image: url("../../../assets/slider/slider-02.png");
+  background-image: url('../../../assets/slider/slider-02.png');
 }
 
 .app__hero__contentWrapper-right,

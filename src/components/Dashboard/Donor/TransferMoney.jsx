@@ -1,32 +1,24 @@
-import React, { useContext, useState } from "react";
-import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import { CharityContext } from "../../Context/CharityContext";
-import toast, { Toaster } from "react-hot-toast";
-import polygonLogo from "../../../assets/dashboard/polygon.png";
-import Loader from "./Loader";
+import React, { useContext, useState } from 'react';
+import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
+import { CharityContext } from '../../Context/CharityContext';
+import toast, { Toaster } from 'react-hot-toast';
+import polygonLogo from '../../../assets/dashboard/polygon.png';
+import Loader from './Loader';
 
 const TransferMoney = ({ showmodal, proposalID }) => {
-  const {
-    Moralis,
-    user,
-    web3,
-    isAuthenticated,
-    isWeb3Enabled,
-    isWeb3EnableLoading,
-  } = useMoralis();
+  const { Moralis, user, web3, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
 
-  const { toastStyles, contractABI, contractAddress } =
-    useContext(CharityContext);
+  const { toastStyles, contractABI, contractAddress } = useContext(CharityContext);
   const contractProcessor = useWeb3ExecuteFunction();
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [amount, setAmount] = useState(0);
 
   const transfer = async () => {
     if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
     const options = {
       contractAddress: contractAddress,
-      functionName: "transferFunds",
+      functionName: 'transferFunds',
       abi: contractABI,
       params: {
         proposalID,
@@ -37,8 +29,7 @@ const TransferMoney = ({ showmodal, proposalID }) => {
 
     await contractProcessor.fetch({
       params: options,
-      onSuccess: () =>
-        toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
+      onSuccess: () => toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
       onError: (error) => toast.error(error.message, toastStyles),
     });
   };
@@ -49,7 +40,7 @@ const TransferMoney = ({ showmodal, proposalID }) => {
   };
 
   const clearForm = () => {
-    setMessage("");
+    setMessage('');
     setAmount(0);
   };
 
@@ -59,7 +50,7 @@ const TransferMoney = ({ showmodal, proposalID }) => {
       if (!validateForm()) {
         clearForm();
         showmodal(false);
-        return toast.error("Incomplete Form Submission!", toastStyles);
+        return toast.error('Incomplete Form Submission!', toastStyles);
       }
       transfer();
       clearForm();
@@ -67,52 +58,46 @@ const TransferMoney = ({ showmodal, proposalID }) => {
     } else {
       clearForm();
       showmodal(false);
-      return toast.error("Please Connect Wallet to Donate!", toastStyles);
+      return toast.error('Please Connect Wallet to Donate!', toastStyles);
     }
   };
 
   return (
     <>
       <Toaster />
-      <div className='app__transferMoney flex__center'>
-        <div className='modal__close'>
-          <button
-            title='Close'
-            className='p__subHeading'
-            onClick={() => showmodal(false)}
-          >
+      <div className="app__transferMoney flex__center">
+        <div className="modal__close">
+          <button title="Close" className="p__subHeading" onClick={() => showmodal(false)}>
             X
           </button>
         </div>
         <form onSubmit={onSubmit}>
-          <div className='app__transferMoney-info-container'>
-            <div className='app__transferMoney-icons-container'>
-              <div className='app__transferMoney-icons-container-polygon flex__center'>
-                <img src={polygonLogo} title='Polygon' alt='Polygon' />
-                <p style={{ marginLeft: ".65rem" }} className='p__subHeading'>
+          <div className="app__transferMoney-info-container">
+            <div className="app__transferMoney-icons-container">
+              <div className="app__transferMoney-icons-container-polygon flex__center">
+                <img src={polygonLogo} title="Polygon" alt="Polygon" />
+                <p style={{ marginLeft: '.65rem' }} className="p__subHeading">
                   Polygon
                 </p>
               </div>
             </div>
-            <div className='app__transferMoney-info-container-userName'>
-              <p className='p__subHeading'>
-                {user ? user.getUsername() : "....."}
-              </p>
+            <div className="app__transferMoney-info-container-userName">
+              <p className="p__subHeading">{user ? user.getUsername() : '.....'}</p>
             </div>
           </div>
-          <div className='app__transferMoney-input-container'>
+          <div className="app__transferMoney-input-container">
             <input
-              placeholder='Amount (MATIC)'
-              name='amount'
-              type='number'
-              step='0.0001'
+              placeholder="Amount (MATIC)"
+              name="amount"
+              type="number"
+              step="0.0001"
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
             />
             <input
-              placeholder='Enter Message'
-              name='message'
-              type='text'
+              placeholder="Enter Message"
+              name="message"
+              type="text"
               onChange={(e) => setMessage(e.target.value)}
               value={message}
             />
@@ -120,9 +105,7 @@ const TransferMoney = ({ showmodal, proposalID }) => {
             {false ? (
               <Loader />
             ) : (
-              <button className='transfer__button custom__button'>
-                Transfer 💸
-              </button>
+              <button className="transfer__button custom__button">Transfer 💸</button>
             )}
           </div>
         </form>
