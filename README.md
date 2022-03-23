@@ -11,10 +11,10 @@ were used, whether for the stated purposes or for others.
 
 ## Walkthrough
 
-- There are 2 dashboards (DONOR & NGO). If you go onto the Donor dashboard & connect your Metamask wallet for the first time, you'd be signed in as a DONOR & you won't be able to connect the same wallet from NGO Dashboard. Same applicable for NGO account.
-- If you're a NGO, you can create a Proposal( Ngo Campaign/Event ) & ask for funds.
-- If you're a DONOR you can donate crypto to the created NGO Proposal. You can also view all the donations received by NGO.
-- Both NGO & DONOR can view their balance & past transactions.
+- There are two dashboards available (DONOR & NGO). If you go to the Donor Dashboard for the first time and connect your Metamask wallet, you will be logged in as a DONOR and will not be able to connect the same wallet from the NGO Dashboard. The same is true for a NGO account.
+- If you're a NGO, you may submit a proposal (NGO Campaign/Event) and request funding.
+- You may give crypto(MATIC in my case) to the created NGO Proposal if you're a DONOR. You may also see all of the donations that NGO has received.
+- Both the NGO and the DONOR may see their account balance and previous transactions.
 #### **Note:** This is not a DAO yet, but I hope to make it into a Charity-DAO in the future.
 
 ## Demo
