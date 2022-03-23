@@ -5,11 +5,21 @@ import Proposal from "./Proposal";
 
 const FetchProposals = () => {
   const { data } = useMoralisQuery("ProposalTable");
+  const { info } = useMoralisQuery("isProposalOpen");
   const [modalStatus, setModalStatus] = useState(false);
   const [proposalID, setProposalID] = useState();
+  const [isProposalFetched, setIsProposalFetched] = useState(false);
 
   const fetchedProposals = JSON.parse(JSON.stringify(data));
   const hasProposals = fetchedProposals.length > 0 ? true : false;
+
+  const isProposalOpen = (proposalID) => {
+    console.log(JSON.parse(JSON.stringify(info)));
+  };
+
+  useEffect(() => {
+    info ? setIsProposalFetched(true) : setIsProposalFetched(false);
+  }, [info]);
 
   const emptyResult = (
     <div>
@@ -21,16 +31,18 @@ const FetchProposals = () => {
     <div className='fetchProposalResult-dashboard flex__center section__padding'>
       <h1>Current Events</h1>
       <div className='proposalResult'>
-        {fetchedProposals.map((proposal) => {
-          return (
-            <Proposal
-              key={proposal["proposalID"]}
-              proposal={proposal}
-              showmodal={setModalStatus}
-              setProposalID={setProposalID}
-            />
-          );
-        })}
+        {isProposalFetched &&
+          fetchedProposals.map((proposal) => {
+            return (
+              <Proposal
+                key={proposal["proposalID"]}
+                proposal={proposal}
+                showmodal={setModalStatus}
+                setProposalID={setProposalID}
+                isProposalOpen={isProposalOpen(proposal["proposalID"])}
+              />
+            );
+          })}
       </div>
       {modalStatus && (
         <div className='TransferMoney__modal flex__center'>

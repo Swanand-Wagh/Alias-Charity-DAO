@@ -1,11 +1,15 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
-    "codeFrame": false
+    "codeFrame": false,
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  "extends": ["prettier"],
+  "extends": ["prettier", "plugin:react/recommended"],
   "env": {
     "browser": true,
     "jest": true
