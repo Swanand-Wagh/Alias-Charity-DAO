@@ -18,22 +18,26 @@ const Navbar = ({ userType }) => {
   const showElement = { display: 'block' };
 
   useEffect(() => {
-    if (isNGO !== undefined) {
-      if (
-        (isAuthenticated && isNGO && userType === 'DONOR') ||
-        (isAuthenticating && !isNGO && userType === 'NGO')
-      ) {
-        toast.error('Connect Again using a DONOR Account!', toastStyles);
-        logout();
+    const redirectWrongAcc = async () => {
+      if (isNGO !== undefined) {
+        if (
+          (isAuthenticated && isNGO && userType === 'DONOR') ||
+          (isAuthenticating && !isNGO && userType === 'NGO')
+        ) {
+          toast.error('Connect Again using a DONOR Account!', toastStyles);
+          await logout();
+        }
+        if (
+          (isAuthenticated && !isNGO && userType === 'NGO') ||
+          (isAuthenticating && isNGO && userType === 'DONOR')
+        ) {
+          toast.error('Connect Again using a NGO Account!!', toastStyles);
+          await logout();
+        }
       }
-      if (
-        (isAuthenticated && !isNGO && userType === 'NGO') ||
-        (isAuthenticating && isNGO && userType === 'DONOR')
-      ) {
-        toast.error('Connect Again using a NGO Account!!', toastStyles);
-        logout();
-      }
-    }
+    };
+
+    redirectWrongAcc();
   }, [isNGO]);
 
   useEffect(() => {
@@ -43,28 +47,34 @@ const Navbar = ({ userType }) => {
   }, []);
 
   const connectWallet = async () => {
-    authenticate().then((u) => {
-      const isNGO = u?.get('isNgo');
-      setIsNGO(isNGO);
+    if (!isAuthenticated) {
+      try {
+        await authenticate().then((u) => {
+          const isNGO = u?.get('isNgo');
+          setIsNGO(isNGO);
 
-      if (isNGO === undefined) {
-        if (userType === 'NGO') createNGO();
+          if (isNGO === undefined) {
+            if (userType === 'NGO') createNGO();
 
-        const bool = userType === 'NGO';
-        u.set('isNgo', bool);
-        u.save();
-      } else {
-        if (!isNGO) {
-          userType === 'DONOR'
-            ? toast.success('Wallet Successfully Connected!', toastStyles)
-            : navigate('/dashboard/donor');
-        } else {
-          userType === 'NGO'
-            ? toast.success('Wallet Successfully Connected!', toastStyles)
-            : navigate('/dashboard/ngo');
-        }
+            const bool = userType === 'NGO';
+            u.set('isNgo', bool);
+            u.save();
+          } else {
+            if (!isNGO) {
+              userType === 'DONOR'
+                ? toast.success('Wallet Successfully Connected!', toastStyles)
+                : navigate('/dashboard/donor');
+            } else {
+              userType === 'NGO'
+                ? toast.success('Wallet Successfully Connected!', toastStyles)
+                : navigate('/dashboard/ngo');
+            }
+          }
+        });
+      } catch (error) {
+        toast.error(error.message, toastStyles);
       }
-    });
+    }
   };
 
   return (
@@ -107,9 +117,9 @@ const Navbar = ({ userType }) => {
                 <span style={{ fontWeight: '500' }}>{getEllipsisTxt(user.getUsername())}</span>
               </li>
               <li
-                onClick={() => {
+                onClick={async () => {
                   toast.error('Wallet Disconnected!', toastStyles);
-                  logout();
+                  await logout();
                 }}
               >
                 Logout
