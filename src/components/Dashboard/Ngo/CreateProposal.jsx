@@ -16,23 +16,29 @@ const CreateProposal = () => {
   const [amtToBeRaised, setAmtToBeRaised] = useState(0);
 
   const addProposal = async () => {
-    if (!isWeb3Enabled) await Moralis.enableWeb3();
-    const options = {
-      contractAddress: contractAddress,
-      functionName: 'createProposal',
-      abi: contractABI,
-      params: {
-        title,
-        content,
-        amtThreshold: amtToBeRaised,
-      },
-    };
+    if (isAuthenticated) {
+      try {
+        if (!isWeb3Enabled) await Moralis.enableWeb3();
+        const options = {
+          contractAddress: contractAddress,
+          functionName: 'createProposal',
+          abi: contractABI,
+          params: {
+            title,
+            content,
+            amtThreshold: amtToBeRaised,
+          },
+        };
 
-    await contractProcessor.fetch({
-      params: options,
-      onSuccess: () => toast.success('Event Created Successfully!', toastStyles),
-      onError: (error) => toast.error(error.message, toastStyles),
-    });
+        await contractProcessor.fetch({
+          params: options,
+          onSuccess: () => toast.success('Event Created Successfully!', toastStyles),
+          onError: (error) => toast.error(error.message, toastStyles),
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   };
 
   const validateForm = () => {

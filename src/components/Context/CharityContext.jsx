@@ -33,43 +33,57 @@ export const CharityDAOProvider = ({ children }) => {
 
   // Enable Web3 and fetch matic balance
   useEffect(() => {
-    const enable = async () => {
-      if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
-      isAuthenticated && refetchUserData();
-      const money = await Moralis.Web3API.account.getNativeBalance({
-        chain: 'mumbai',
-      });
-      let matic = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
-      setUserWalletBalance(matic);
-    };
-    enable();
+    if (isAuthenticated) {
+      try {
+        const enable = async () => {
+          if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
+          isAuthenticated && (await refetchUserData());
+
+          const money = await Moralis.Web3API.account.getNativeBalance({
+            chain: 'mumbai',
+          });
+          let matic = parseFloat(Moralis.Units.FromWei(money.balance)).toFixed(4);
+          setUserWalletBalance(matic);
+        };
+
+        enable();
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   }, [Moralis, isAuthenticated]);
 
   useEffect(() => {
-    const checkIfMetaMaskExists = async () => {
-      try {
-        if (!ethereum) return toast.error('Please install MetaMask!', toastStyles);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    if (!isAuthenticated) {
+      const checkIfMetaMaskExists = async () => {
+        try {
+          if (!ethereum) return toast.error('Please install MetaMask!', toastStyles);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-    checkIfMetaMaskExists();
+      checkIfMetaMaskExists();
+    }
   }, []);
 
   const createNGO = async () => {
-    if (!isWeb3Enabled) await Moralis.enableWeb3();
-    const options = {
-      contractAddress: contractAddress,
-      functionName: 'createNGO',
-      abi: contractABI,
-    };
+    try {
+      if (!isWeb3Enabled) await Moralis.enableWeb3();
+      const options = {
+        contractAddress: contractAddress,
+        functionName: 'createNGO',
+        abi: contractABI,
+      };
 
-    await contractProcessor.fetch({
-      params: options,
-      onSuccess: () => toast.success('NGO Created Successfully!', toastStyles),
-      onError: (error) => toast.error(error.message, toastStyles),
-    });
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: () => toast.success('NGO Created Successfully!', toastStyles),
+        onError: (error) => toast.error(error.message, toastStyles),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

@@ -15,23 +15,29 @@ const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
   const [amount, setAmount] = useState(0);
 
   const transfer = async () => {
-    if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
-    const options = {
-      contractAddress: contractAddress,
-      functionName: 'transferFunds',
-      abi: contractABI,
-      params: {
-        proposalID,
-        message,
-      },
-      msgValue: Moralis.Units.ETH(amount),
-    };
+    if (isAuthenticated) {
+      try {
+        if (!isWeb3Enabled && !isWeb3EnableLoading) await Moralis.enableWeb3();
+        const options = {
+          contractAddress: contractAddress,
+          functionName: 'transferFunds',
+          abi: contractABI,
+          params: {
+            proposalID,
+            message,
+          },
+          msgValue: Moralis.Units.ETH(amount),
+        };
 
-    await contractProcessor.fetch({
-      params: options,
-      onSuccess: () => toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
-      onError: (error) => toast.error(error.message, toastStyles),
-    });
+        await contractProcessor.fetch({
+          params: options,
+          onSuccess: () => toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
+          onError: (error) => toast.error(error.message, toastStyles),
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   };
 
   const validateForm = () => {
