@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useMoralisQuery } from 'react-moralis';
+import { useMoralis, useMoralisQuery } from 'react-moralis';
 import TransferMoney from './TransferMoney';
 import Proposal from './Proposal';
 
-const FetchProposals = () => {
+const FetchProposals = ({ userType }) => {
+  const { user, isAuthenticated } = useMoralis();
   const { data } = useMoralisQuery('ProposalTable');
   const info = useMoralisQuery('isProposalOpen');
+
   const [modalStatus, setModalStatus] = useState(false);
   const [proposalID, setProposalID] = useState();
   const [ngoWalletAddress, setNgoWalletAddress] = useState('');
@@ -30,7 +32,7 @@ const FetchProposals = () => {
     </div>
   );
 
-  const proposalResult = (
+  const proposalsVisibleToDonor = (
     <div className="fetchProposalResult-dashboard flex__center section__padding">
       <h1>Current Events</h1>
       <div className="proposalResult">
@@ -60,7 +62,39 @@ const FetchProposals = () => {
     </div>
   );
 
-  return hasProposals ? proposalResult : emptyResult;
+  const proposalsVisibleToNGO = isAuthenticated && (
+    <div className="fetchProposalResult-dashboard flex__center section__padding">
+      <h1>OnGoing Events</h1>
+      <div className="proposalResult">
+        {fetchedProposals.map((proposal) => {
+          return (
+            user.get('ethAddress') === proposal.ngoAddress &&
+            !isProposalClose(proposal['proposalID']) && (
+              <Proposal key={proposal['proposalID']} proposal={proposal} userType="NGO" />
+            )
+          );
+        })}
+      </div>
+
+      <h1>Completed Events</h1>
+      <div className="proposalResult">
+        {fetchedProposals.map((proposal) => {
+          return (
+            user.get('ethAddress') === proposal.ngoAddress &&
+            isProposalClose(proposal['proposalID']) && (
+              <Proposal key={proposal['proposalID']} proposal={proposal} userType="NGO" />
+            )
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  if (userType === 'DONOR') {
+    return hasProposals ? proposalsVisibleToDonor : emptyResult;
+  } else {
+    return hasProposals ? proposalsVisibleToNGO : emptyResult;
+  }
 };
 
 export default FetchProposals;

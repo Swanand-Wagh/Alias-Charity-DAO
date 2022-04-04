@@ -8,7 +8,7 @@ const DonorDashboard = () => {
     <>
       <div>
         <Navbar userType="DONOR" />
-        <FetchProposals />
+        <FetchProposals userType="DONOR" />
         <Footer />
       </div>
     </>
