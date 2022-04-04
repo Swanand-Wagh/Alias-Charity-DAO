@@ -18,7 +18,7 @@ were used, whether for the stated purposes or for others.
 #### **Note:** This is not a DAO yet, but I hope to make it into a Charity-DAO in the future.
 
 ## Demo
-https://alias-charity-blockchain.web.app/
+https://alias-charity-blockchain.vercel.app/
 
 ## Tech Stack
 
@@ -39,11 +39,11 @@ https://alias-charity-blockchain.web.app/
 ```
 
 ## General Setup
-To run this project, you will need to create a moralis_config.js file in /src & add the following
+To run this project, you will need to create a .env file outside /src & provide your appId and serverUrl from Moralis
 
 ```
-export const SERVER_URL = " ";
-export const APP_ID = " ";
+REACT_APP_MORALIS_APPLICATION_ID = xxxxxxxxxxxx
+REACT_APP_MORALIS_SERVER_URL = https://xxxxxx.grandmoralis.com:2053/server
 ```
 
 - Install [Metamask](https://metamask.io/)
