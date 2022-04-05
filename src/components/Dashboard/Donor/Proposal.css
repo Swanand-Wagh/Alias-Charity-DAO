@@ -17,6 +17,15 @@
   position: relative;
 }
 
+.completedProposals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.completedProposals > * {
+  margin-right: 25px;
+}
+
 .proposal__card {
   flex-direction: column;
   position: relative;

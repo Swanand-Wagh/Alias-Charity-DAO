@@ -76,8 +76,8 @@ const FetchProposals = ({ userType }) => {
         })}
       </div>
 
-      <h1>Completed Events</h1>
-      <div className="proposalResult">
+      <h1 style={{ marginTop: '3.5rem' }}>Completed Events</h1>
+      <div className="completedProposals" style={{ flexWrap: 'nowrap' }}>
         {fetchedProposals.map((proposal) => {
           return (
             user.get('ethAddress') === proposal.ngoAddress &&
