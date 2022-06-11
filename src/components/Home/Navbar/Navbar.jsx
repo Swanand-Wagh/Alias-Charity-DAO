@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMoralis } from 'react-moralis';
 import { CharityContext } from '../../Context/CharityContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { getExplorer } from '../../../helpers/networks';
 import siteLogo from '../../../assets/logo.png';
 import './Navbar.css';
@@ -72,14 +72,13 @@ const Navbar = ({ userType }) => {
           }
         });
       } catch (error) {
-        toast.error(error.message, toastStyles);
+        toast.error('Some Error Occured!', toastStyles);
       }
     }
   };
 
   return (
     <>
-      <Toaster />
       <nav className="app__navbar flex__center section__padding">
         <img src={siteLogo} title="Logo" alt="logo" onClick={() => navigate('/')} />
         <ul>
@@ -114,7 +113,7 @@ const Navbar = ({ userType }) => {
             <>
               <li>
                 {userType} :{' '}
-                <span style={{ fontWeight: '500' }}>{getEllipsisTxt(user.getUsername())}</span>
+                <span style={{ fontWeight: '500' }}>{getEllipsisTxt(user.get('ethAddress'))}</span>
               </li>
               <li
                 onClick={async () => {

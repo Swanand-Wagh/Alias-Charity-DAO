@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { CharityContext } from '../../Context/CharityContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import polygonLogo from '../../../assets/dashboard/polygon.png';
 import Loader from './Loader';
 
@@ -32,7 +32,7 @@ const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
         await contractProcessor.fetch({
           params: options,
           onSuccess: () => toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
-          onError: (error) => toast.error(error.message, toastStyles),
+          onError: () => toast.error("Try Again, Donation Failed!", toastStyles),
         });
       } catch (error) {
         console.log(error.message);
@@ -70,7 +70,6 @@ const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
 
   return (
     <>
-      <Toaster />
       <div className="app__transferMoney flex__center">
         <div className="modal__close">
           <button title="Close" className="p__subHeading" onClick={() => showmodal(false)}>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { CharityContext } from '../../Context/CharityContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import dashboardImage from '../../../assets/dashboard/world-ngo-day-mauritius.svg';
 import './CreateProposal.css';
 
@@ -33,7 +33,7 @@ const CreateProposal = () => {
         await contractProcessor.fetch({
           params: options,
           onSuccess: () => toast.success('Event Created Successfully!', toastStyles),
-          onError: (error) => toast.error(error.message, toastStyles),
+          onError: (error) => toast.error("Error During Event Creation!", toastStyles),
         });
       } catch (error) {
         console.log(error.message);
@@ -68,7 +68,6 @@ const CreateProposal = () => {
 
   return (
     <>
-      <Toaster />
       <div className="app__dashboard container__bg flex__center section__padding">
         <h1 className="section__heading">Host an Event</h1>
         <form className="app__dashboard-form" onSubmit={onSubmit}>

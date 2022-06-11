@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { contract_ABI, contract_Address } from '../../utils/constants';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const { ethereum } = window;
 export const CharityContext = createContext();
@@ -21,6 +21,7 @@ export const CharityDAOProvider = ({ children }) => {
       fontWeight: '600',
       background: '#333',
       color: '#fff',
+      duration: 3000,
     },
   };
 
@@ -79,7 +80,7 @@ export const CharityDAOProvider = ({ children }) => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: () => toast.success('NGO Created Successfully!', toastStyles),
-        onError: (error) => toast.error(error.message, toastStyles),
+        onError: (error) => toast.error('Error during NGO Creation!', toastStyles),
       });
     } catch (error) {
       console.log(error.message);
@@ -88,7 +89,6 @@ export const CharityDAOProvider = ({ children }) => {
 
   return (
     <>
-      <Toaster />
       <CharityContext.Provider
         value={{
           contractABI,
