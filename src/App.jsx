@@ -15,7 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/dashboard/ngo" element={<NgoDashboard />} />
           <Route path="/dashboard/donor" element={<DonorDashboard />} />
-          <Route path="/dashboard/donor" element={<DaoDashboard />} />
+          <Route path="/dashboard/dao" element={<DaoDashboard />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>

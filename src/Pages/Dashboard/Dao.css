@@ -1,0 +1,361 @@
+.voting {
+  margin-top: 350px;
+  background-color: white;
+  height: 100vh;
+}
+
+.content {
+  margin-top: -60px;
+  display: flex;
+  justify-content: center;
+}
+
+.contentProposal {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 26px;
+  width: 60vw;
+  left: 20vw;
+  position: absolute;
+}
+
+.proposal {
+  margin-bottom: 40px;
+}
+
+.votesDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backHome {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 20px;
+  font-size: 12px;
+  align-items: center;
+  gap: 2px;
+}
+
+.proposalOverview {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.proposer {
+  display: flex;
+  font-size: 12px;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+.tabContent {
+  left: 20vw;
+  position: absolute;
+  width: 60vw;
+  margin-top: 50px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.widgets {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  height: 120px;
+}
+
+.extraWidgetInfo {
+  color: rgba(6, 158, 252, 0.75);
+  font-size: 12.5px;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.extraTitle {
+  display: flex;
+  justify-content: end;
+}
+
+.progress {
+  margin-top: 20px;
+  height: 8px;
+  background-color: rgb(222, 222, 222);
+  border-radius: 4px;
+}
+
+.progressPercentage {
+  height: 8px;
+  background-color: rgb(253, 27, 91, 1);
+  border-radius: 4px;
+}
+
+/* ------------------------------------------- */
+
+.widgetContainer {
+  font-family: 'PT Sans', sans-serif !important;
+  border-radius: 10px !important;
+  border: none !important;
+  box-shadow: 0 0 7.5px 0 rgb(253, 27, 91, 0.2);
+}
+
+.widgetContainer .bPCevP {
+  font-size: 14px;
+  color: var(--color-pink);
+}
+
+.widgetContainer .esWhIu {
+  font-size: 20px;
+  color: var(--color-pink);
+  font-weight: 700;
+}
+
+.daoDashboardProposalTableName {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  margin-top: 5rem;
+  margin-block-end: 2rem;
+  margin-inline: auto;
+  line-height: 30px;
+  color: var(--color-pink);
+  text-transform: uppercase;
+}
+
+.daoDashboardProposalTable .cNlUCk {
+  border-radius: 10px;
+  background: none;
+  padding: 0;
+}
+
+.daoDashboardProposalTable .dgetWY {
+  font-family: 'PT Sans', sans-serif !important;
+  border-radius: 10px;
+  border: 1.5px solid rgb(253, 27, 91, 0.175);
+  box-shadow: none;
+  grid-template-columns: 10% 67% 20%;
+  /* background-color: var(--color-grey); */
+}
+
+.dgetWY > div.table_header {
+  color: var(--color-pink);
+}
+
+.dgetWY > .dvtEnI:nth-of-type(4n + 3) {
+  margin-inline: auto;
+}
+
+.bCgRzf {
+  padding-top: 0 !important;
+  background: none !important;
+  border-bottom: 1px solid rgb(253, 27, 91, 0.175);
+}
+
+.daoDashboardProposalTable .dgetWY > .lastCol {
+  padding-right: 0;
+}
+
+.daoDashboardProposalTable .ibNLnf,
+.daoDashboardProposalTable .vIDLh,
+.daoDashboardProposalTable .kSmntZ {
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.daoDashboardProposalTable strong {
+  letter-spacing: 0.025rem;
+}
+
+.daoDashboardProposalTable .fvvveP {
+  cursor: pointer;
+}
+
+.daoDashboardProposalTable .kYVEin {
+  border: none;
+  margin-inline: 1.5rem;
+  outline: 1.5px solid rgb(253, 27, 91, 0.25);
+  border-radius: 2.5px;
+  color: var(--color-pink);
+  background-color: var(--color-grey);
+  cursor: pointer;
+}
+
+.daoDashboardProposalForm {
+  background-color: var(--color-grey) !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  margin-block: 4rem !important;
+}
+
+.daoDashboardProposalForm .iTKueN {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  font-size: 20px;
+  margin-bottom: -0.5em;
+}
+
+.daoDashboardProposalForm .NSiPS {
+  margin-inline-start: auto;
+  background-color: var(--color-pink);
+  position: relative;
+  color: var(--color-white);
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+  transition: ease-in-out 0.7s;
+  border: 1px transparent;
+  cursor: pointer;
+  border-radius: 0;
+  font-weight: normal;
+}
+
+.daoDashboardProposalForm .eOwykx {
+  padding: 0 !important;
+  border-radius: 10px;
+  border: none;
+}
+
+.daoDashboardProposalForm .NSiPS:hover {
+  color: var(--color-pink);
+  background-color: var(--color-white);
+  outline: 1px solid var(--color-pink);
+}
+
+.daoDashboardProposalForm .oBOKM {
+  resize: none;
+  height: 200px !important;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1.5px solid rgb(253, 27, 91, 0.25);
+  color: var(--color-pink);
+}
+
+.daoDashboardProposalForm .oBOKM:focus {
+  outline: 1.5px solid rgb(253, 27, 91, 1);
+  box-shadow: 0 0 10px 1px rgb(253, 27, 91, 0.5);
+  border: none;
+  border-bottom: none;
+}
+
+/* ------------------------------------------- */
+
+@media screen and (min-width: 2200px) {
+  .tabContent {
+    left: 25vw;
+    width: 50vw;
+    margin-top: 75px;
+  }
+
+  .widgets {
+    height: 200px;
+    gap: 20px;
+  }
+
+  .widgetContainer {
+    box-shadow: 0 0 10px 0 rgb(253, 27, 91, 0.35);
+  }
+
+  .widgetContainer .bPCevP {
+    font-size: 25px;
+  }
+
+  .widgetContainer div {
+    margin-top: 30px;
+  }
+
+  .widgetContainer .esWhIu {
+    font-size: 35px;
+    margin-top: 5px;
+    font-weight: 400;
+  }
+
+  .extraWidgetInfo {
+    font-size: 20px;
+    margin-top: 10px !important;
+  }
+
+  .daoDashboardProposalTableName {
+    font-size: 32px;
+    margin-top: 7.5rem;
+    margin-block-end: 3rem;
+  }
+
+  .daoDashboardProposalForm .iTKueN {
+    font-size: 32px;
+    margin-bottom: 0em;
+  }
+
+  .daoDashboardProposalTable .dgetWY {
+    border: 1.5px solid rgb(253, 27, 91, 0.3);
+    font-size: 25px;
+  }
+
+  .bCgRzf {
+    border-bottom: 1px solid rgb(253, 27, 91, 0.3);
+  }
+
+  .dgetWY > div.table_header {
+    font-size: 27.5px;
+    letter-spacing: 0.035rem !important;
+  }
+
+  .dgetWY .dvtEnI {
+    padding: 20px !important;
+  }
+
+  .dvtEnI div {
+    font-size: 25px !important;
+  }
+
+  .daoDashboardProposalTable .vIDLh,
+  .daoDashboardProposalTable .kSmntZ {
+    padding: 10px 30px;
+  }
+
+  .daoDashboardProposalTable .ibNLnf {
+    padding: 10px 37.5px;
+  }
+
+  .hNkeaR {
+    margin-top: 20px !important;
+    font-size: 25px !important;
+  }
+
+  .daoDashboardProposalTable .kYVEin {
+    margin-inline: 2rem;
+    padding: 22.5px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .daoDashboardProposalForm {
+    padding: 40px !important;
+    margin-block: 8rem !important;
+  }
+
+  .daoDashboardProposalForm .oBOKM {
+    height: 350px !important;
+    padding: 10px 15px !important;
+    font-size: 25px !important;
+    border-bottom: 1.5px solid rgb(253, 27, 91, 0.5) !important;
+  }
+
+  .daoDashboardProposalForm .NSiPS {
+    font-size: 1.5625rem;
+    padding: 1.3rem 2.2rem;
+    font-weight: normal;
+  }
+}

@@ -32,7 +32,7 @@ const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
         await contractProcessor.fetch({
           params: options,
           onSuccess: () => toast.success(`Successfully Donated ${amount} MATIC!`, toastStyles),
-          onError: () => toast.error("Try Again, Donation Failed!", toastStyles),
+          onError: () => toast.error('Try Again, Donation Failed!', toastStyles),
         });
       } catch (error) {
         console.log(error.message);

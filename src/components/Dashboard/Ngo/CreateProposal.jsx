@@ -33,7 +33,7 @@ const CreateProposal = () => {
         await contractProcessor.fetch({
           params: options,
           onSuccess: () => toast.success('Event Created Successfully!', toastStyles),
-          onError: (error) => toast.error("Error During Event Creation!", toastStyles),
+          onError: (error) => toast.error('Error During Event Creation!', toastStyles),
         });
       } catch (error) {
         console.log(error.message);
