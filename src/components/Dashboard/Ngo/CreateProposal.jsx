@@ -4,6 +4,7 @@ import { CharityContext } from '../../Context/CharityContext';
 import toast from 'react-hot-toast';
 import dashboardImage from '../../../assets/dashboard/world-ngo-day-mauritius.svg';
 import './CreateProposal.css';
+import console from 'console-browserify';
 
 const CreateProposal = () => {
   const { Moralis, isAuthenticated, isWeb3Enabled } = useMoralis();

@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { contract_ABI, contract_Address } from '../../utils/constants';
 import toast from 'react-hot-toast';
+import console from "console-browserify";
 
 const { ethereum } = window;
 export const CharityContext = createContext();

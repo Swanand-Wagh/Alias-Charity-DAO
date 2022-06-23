@@ -4,6 +4,7 @@ import { CharityContext } from '../../Context/CharityContext';
 import toast from 'react-hot-toast';
 import polygonLogo from '../../../assets/dashboard/polygon.png';
 import Loader from './Loader';
+import console from 'console-browserify';
 
 const TransferMoney = ({ showmodal, proposalID, ngoWalletAddress }) => {
   const { Moralis, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
