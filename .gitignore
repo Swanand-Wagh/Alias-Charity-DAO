@@ -25,3 +25,4 @@ src/moralis_config.js
 .firebaserc
 firebase.json
 .env
+.firebase

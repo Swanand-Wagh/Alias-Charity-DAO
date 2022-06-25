@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TabList, Tab, Widget, Table, Form } from 'web3uikit';
 import { useMoralis, useMoralisWeb3Api, useWeb3ExecuteFunction } from 'react-moralis';
+import Footer from '../../components/Home/Footer/Footer';
+import Navbar from '../../components/Home/Navbar/Navbar';
 import sampleProposals from '../../utils/sample-proposals';
 import './Dao.css';
 
@@ -17,12 +19,13 @@ const DaoDashboard = () => {
 
   return (
     <>
+      <Navbar userType="DAO" />
       <div className="content">
         <TabList defaultActiveKey={1} tabStyle="bulbUnion">
-          <Tab tabKey={1} tabName="DAO">
+          <Tab tabKey={1} tabName={'DAO'}>
             {proposals && (
               <div className="tabContent">
-                Governance Overview
+                <p className="daoDashboardProposalTableName">Governance Overview</p>
                 <div className="widgets">
                   <Widget
                     className="widgetContainer"
@@ -85,6 +88,7 @@ const DaoDashboard = () => {
         </TabList>
       </div>
       <div className="voting"></div>
+      <Footer />
     </>
   );
 };

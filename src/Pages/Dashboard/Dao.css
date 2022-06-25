@@ -1,13 +1,19 @@
-.voting {
+/* .voting {
   margin-top: 350px;
   background-color: white;
   height: 100vh;
-}
+} */
 
 .content {
+  overflow-x: hidden !important;
   margin-top: -60px;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+}
+
+.sc-fSUSjI,
+.gmvUuf {
+  display: none !important;
 }
 
 .contentProposal {
@@ -52,9 +58,7 @@
 }
 
 .tabContent {
-  left: 20vw;
-  position: absolute;
-  width: 60vw;
+  width: 65vw;
   margin-top: 50px;
   color: rgb(255, 255, 255);
   font-weight: bold;
