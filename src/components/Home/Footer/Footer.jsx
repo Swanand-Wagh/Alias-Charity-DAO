@@ -20,8 +20,8 @@ const Footer = () => {
           <h3 className="app__footer-container-heading">Smart charitables</h3>
           <div className="app__footer-container-underline"></div>
           <p className="p__normal">
-            ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
+            Charity DAO is a decentralised charitable organisation that intends to make charity
+            easier and more effective by removing government and geographic constraints ♥️
           </p>
           <div className="app__footer-socialIcons-container">
             <span className="footer-socialIcons flex__center">

@@ -30,7 +30,8 @@
   flex-direction: column;
   position: relative;
   height: 350px;
-  padding: 20px;
+  width: 625px;
+  padding: 30px;
   background-color: var(--color-grey);
   border-radius: 15px;
   overflow-x: hidden;
@@ -40,6 +41,19 @@
 .proposal__card h4 {
   font-size: 1.6rem;
   color: var(--color-pink);
+}
+
+.p__funds {
+  display: flex;
+  justify-content: space-around;
+}
+.p__normal > span {
+  color: var(--color-pink);
+  opacity: 0.9;
+}
+.p__normal {
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .proposal__card p {

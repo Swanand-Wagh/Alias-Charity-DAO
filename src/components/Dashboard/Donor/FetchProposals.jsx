@@ -65,12 +65,16 @@ const FetchProposals = ({ userType }) => {
   const proposalsVisibleToNGO = isAuthenticated && (
     <div className="fetchProposalResult-dashboard flex__center section__padding">
       <h1>OnGoing Events</h1>
-      <div className="proposalResult">
+      <div className="completedProposals">
         {fetchedProposals.map((proposal) => {
           return (
             user.get('ethAddress') === proposal.ngoAddress &&
             !isProposalClose(proposal['proposalID']) && (
-              <Proposal key={proposal['proposalID']} proposal={proposal} userType="NGO" />
+              <Proposal
+                key={proposal['proposalID']}
+                proposal={proposal}
+                userType="NGO"
+              />
             )
           );
         })}

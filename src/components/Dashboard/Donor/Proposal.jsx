@@ -23,8 +23,15 @@ const Proposal = ({ proposal, showmodal, setProposalID, setNgoWalletAddress, use
       <div className="proposal__card">
         <h4 className="section__heading">{title}</h4>
         <p className="p__normal">{description}</p>
-        <p className="p__normal">Amount to be raised - {amtThreshold} MATIC</p>
-        <p className="p__normal">Amout received till now - {fetchAmountReceived()} MATIC</p>
+        <div className="p__funds">
+          <p className="p__normal">
+            <span>Funds Required</span> <br /> {amtThreshold} MATIC
+          </p>
+          <p className="p__normal">
+            <span>Funds Raised</span> <br />
+            {fetchAmountReceived()} MATIC
+          </p>
+        </div>
         {userType !== 'NGO' && (
           <div className="proposal__card-buttonsContainer">
             <a

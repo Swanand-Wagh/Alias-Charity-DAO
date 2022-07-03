@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { CharityContext } from '../../Context/CharityContext';
 import toast from 'react-hot-toast';
-import dashboardImage from '../../../assets/dashboard/world-ngo-day-mauritius.svg';
+import dashboardImage from '../../../assets/dashboard/host.svg';
 import './CreateProposal.css';
 import console from 'console-browserify';
 
@@ -104,7 +104,7 @@ const CreateProposal = () => {
           </div>
           <div className="app__dashboard-image">
             <p className="section__heading">Raise Funds For A Reason</p>
-            <img src={dashboardImage} alt="DashboardImage" />
+            <img className='hostEvent-img' src={dashboardImage} alt="DashboardImage" />
           </div>
         </form>
       </div>
