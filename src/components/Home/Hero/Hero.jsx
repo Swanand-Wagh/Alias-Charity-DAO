@@ -8,7 +8,7 @@ const Hero = () => {
     <header className="app__hero flex__justify section__padding container__bg">
       <div className="app__hero__contentWrapper-left">
         <h1 className="app__hero-headtext">Crypto Donations for the People</h1>
-        <p>
+        <p style={{ width: '82%' }}>
           Numerous scandals related to the traditional charity processes affected the way public
           perceives charity and increased the mistrust in charitable organizations. In fact, due to
           the self-isolation and lockdown volunteers are not able to collect on the streets;
