@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS CARE #7",
+    "description": "Bridge to Health and Beyond, reflects our ambition to connect the communities in need, with health and quality of life.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/7.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Chennai"
+        },
+        {
+            "trait_type": "Category",
+            "value": "Health"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}

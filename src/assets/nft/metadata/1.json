@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS CHARITY #1",
+    "description": "This  is a volunteer based, zero-funds organization that works to get surplus food from restaurants and the community to serve less fortunate people.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/1.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Pune"
+        },
+        {
+            "trait_type": "Category",
+            "value": "Food Donations"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}

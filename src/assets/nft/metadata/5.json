@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS FOUNDATION #5",
+    "description": "Our vision is to create self sustaining communities, where the youth will be the spokesperson for their own community issues, driving changes and bringing in customized solutions in the best interest of their communities.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/5.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Goa"
+        },
+        {
+            "trait_type": "Category",
+            "value": "Community"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}

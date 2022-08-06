@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS CHIT FUND #3",
+    "description": "This is an Indian non-governmental organization that works towards ensuring children's rights.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/3.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Bangalore"
+        },
+        {
+            "trait_type": "Category",
+            "value": "Children"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}

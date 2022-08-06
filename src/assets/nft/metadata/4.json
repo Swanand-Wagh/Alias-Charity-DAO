@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS HELPERS #4",
+    "description": "We prepare youth for employment and entrepreneurship opportunities by working at the intersection of education and livelihood.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/4.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Delhi"
+        },
+        {
+            "trait_type": "Category",
+            "value": "Education"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}

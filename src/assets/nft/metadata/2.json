@@ -1,0 +1,19 @@
+{
+    "name": "ALIAS CLUB #2",
+    "description": "Together We Lead Change In Our Own Backyards And Across The World",
+    "image": "https://gateway.pinata.cloud/ipfs/QmQjt5iCu9CQni3EAZh3wdxY4jCHDs7gRjhx2yDmXRSCGw/2.png",
+    "attributes": [
+        {
+            "trait_type": "Location",
+            "value": "Mumbai"
+        },
+        {
+            "trait_type": "Category",
+            "value": "General"
+        },
+        {
+            "trait_type": "Verified",
+            "value": "true"
+        }
+    ]
+}
