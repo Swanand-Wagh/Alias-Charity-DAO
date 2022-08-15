@@ -1,74 +1,42 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMoralis } from 'react-moralis';
+import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
 import { CharityContext } from '../../Context/CharityContext';
 import toast from 'react-hot-toast';
 import { getExplorer } from '../../../helpers/networks';
 import siteLogo from '../../../assets/logo.png';
 import './Navbar.css';
+import console from 'console-browserify';
 
 const Navbar = ({ userType }) => {
   let navigate = useNavigate();
-  const { toastStyles, createNGO, userWalletBalance, getEllipsisTxt } = useContext(CharityContext);
-  const { authenticate, isAuthenticated, isAuthenticating, logout, user, account } = useMoralis();
-
-  const [isNGO, setIsNGO] = useState(undefined);
+  const { toastStyles, userWalletBalance, getEllipsisTxt } = useContext(CharityContext);
+  const { authenticate, isAuthenticated, logout, user, account } = useMoralis();
+  const Web3Api = useMoralisWeb3Api();
 
   const hideElement = { display: 'none' };
   const showElement = { display: 'block' };
 
-  useEffect(() => {
-    const redirectWrongAcc = async () => {
-      if (isNGO !== undefined) {
-        if (
-          (isAuthenticated && isNGO && userType === 'DONOR') ||
-          (isAuthenticating && !isNGO && userType === 'NGO')
-        ) {
-          toast.error('Connect Again using a DONOR Account!', toastStyles);
-          await logout();
-        }
-        if (
-          (isAuthenticated && !isNGO && userType === 'NGO') ||
-          (isAuthenticating && isNGO && userType === 'DONOR')
-        ) {
-          toast.error('Connect Again using a NGO Account!!', toastStyles);
-          await logout();
-        }
-      }
-    };
-
-    redirectWrongAcc();
-  }, [isNGO]);
-
-  useEffect(() => {
-    if (user) {
-      setIsNGO(user.get('isNgo'));
-    }
-  }, []);
-
-  const connectWallet = async () => {
+  // CONNECT TO NGO-DASHBOARD ONLY IF WALLET HAS NFT ELSE CONNECT TO DONOR-DASHBOARD 
+  const connectUserWallet = async () => {
     if (!isAuthenticated) {
       try {
-        await authenticate().then((u) => {
-          const isNGO = u?.get('isNgo');
-          setIsNGO(isNGO);
+        authenticate().then(async (u) => {
+          const wallet = u?.get('ethAddress');
 
-          if (isNGO === undefined) {
-            if (userType === 'NGO') createNGO();
+          const options = {
+            chain: 'mumbai',
+            address: wallet,
+            token_address: '0x5fcd3A03F56F5C12be1B5C408D3c138e07Cb7502',
+          };
+          const polygonNFTs = await Web3Api.account.getNFTsForContract(options);
+          const _hasNFT = polygonNFTs.result.length > 0;
 
-            const bool = userType === 'NGO';
-            u.set('isNgo', bool);
-            u.save();
+          if ((_hasNFT && userType === 'NGO') || (!_hasNFT && userType === 'DONOR')) {
+            toast.success('Wallet Successfully Connected!', toastStyles);
           } else {
-            if (!isNGO) {
-              userType === 'DONOR'
-                ? toast.success('Wallet Successfully Connected!', toastStyles)
-                : navigate('/dashboard/donor');
-            } else {
-              userType === 'NGO'
-                ? toast.success('Wallet Successfully Connected!', toastStyles)
-                : navigate('/dashboard/ngo');
-            }
+            await logout();
+            toast.error('Retry using Appropriate Wallet!', toastStyles);
           }
         });
       } catch (error) {
@@ -108,7 +76,9 @@ const Navbar = ({ userType }) => {
           >
             DONOR Dashboard
           </li>
-          {userType && !isAuthenticated && <li onClick={() => connectWallet()}>Connect Wallet</li>}
+          {userType && !isAuthenticated && (
+            <li onClick={() => connectUserWallet()}>Connect Wallet</li>
+          )}
           {userType && isAuthenticated && (
             <>
               <li>
